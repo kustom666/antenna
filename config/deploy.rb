@@ -48,4 +48,5 @@ namespace :deploy do
     end
   end
   before "deploy", "deploy:check_revision"
+
 end
