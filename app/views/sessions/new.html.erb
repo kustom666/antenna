@@ -1,0 +1,19 @@
+<h1>Account</h1>
+
+
+<div class="page" id="sessions_new">
+  <% if flash[:notice] %>
+    <p class="notice"><%= flash[:notice] %></p>
+  <% end %>
+  <%= form_tag sessions_path do %>
+    <div class="field">
+      <%= label_tag :email %><br />
+      <%= text_field_tag :email, params[:email] %>
+    </div>
+    <div class="field">
+      <%= label_tag :password %><br />
+      <%= password_field_tag :password %>
+    </div>
+    <div class="actions"><%= submit_tag "Log In" %></div>
+  <% end %>
+</div>
