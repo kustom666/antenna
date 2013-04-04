@@ -1,7 +1,7 @@
 Antenna::Application.routes.draw do
 
-  root :to => 'articles#index'
-  resources :articles
+  root :to => 'users#index'
+  #resources :articles
 
 
   resources :users
