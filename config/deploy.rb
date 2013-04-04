@@ -17,7 +17,7 @@ ssh_options[:forward_agent] = true
 
 after "deploy", "deploy:cleanup" # keep only the last 5 releases
 
-namespace :deploy do
+namespace :deploy, :max_hosts => 4 do
   %w[start stop restart].each do |command|
     desc "#{command} unicorn server"
     task command, roles: :app, except: {no_release: true} do
