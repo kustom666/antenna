@@ -46,10 +46,12 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
+    command = "useradd -p #{params[:desired_ftp_pass]} -d /home/#{params[:nickname]}/videos/ -s /bin/false"
     @user = User.new(params[:user])
-
     respond_to do |format|
       if @user.save
+        system command
+
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
       else
