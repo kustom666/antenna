@@ -28,7 +28,7 @@
     <%= f.password_field :password_confirmation %>
   </div>
 
-  <% if current_user.admin %>
+  <% if current_user && current_user.admin %>
     <div class="field">
       <%= f.label :admin %><br />
       <%= f.check_box :admin %>
