@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   attr_accessible :email, :nickname, :password_digest, :password, :password_confirmation, :admin, :regular
-  attr_accessor :desire_ftp_pass
+  attr_accessor :desired_ftp_pass
   has_secure_password
   validates_presence_of :email, :nickname
   validates_uniqueness_of :email, :nickname

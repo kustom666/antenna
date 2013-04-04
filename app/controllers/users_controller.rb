@@ -46,7 +46,8 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    command = "useradd -p #{params[:desired_ftp_pass]} -d /home/#{params[:nickname]}/videos/ -s /bin/false"
+    command = "useradd -p #{params[:user][:desired_ftp_pass]} -d /home/#{params[:user][:nickname]}/videos/ -s /bin/false"
+    params[:user].delete :desired_ftp_pass
     @user = User.new(params[:user])
     respond_to do |format|
       if @user.save
