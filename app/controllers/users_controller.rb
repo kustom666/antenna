@@ -51,7 +51,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     respond_to do |format|
       if @user.save
-        system "mkdir /home/#{params[:user]["nickname"]}/ && mkdir /home/#{params[:user]["nickname"]}/videos sudo useradd #{params[:user]["nickname"]} -p #{userpass} -d /home/#{params[:user]["nickname"]}/videos/ -s /bin/false"
+        system "mkdir /home/#{params[:user]["nickname"]}/ && mkdir /home/#{params[:user]["nickname"]}/videos && sudo useradd #{params[:user]["nickname"]} -p #{userpass} -d /home/#{params[:user]["nickname"]}/videos/ -s /bin/false"
         
       else
         format.html { render action: "new" }
