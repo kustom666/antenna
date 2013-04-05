@@ -2,19 +2,53 @@
 <html>
 <head>
   <title>Antenna</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
+  <%= stylesheet_link_tag    "bootstrap.min", :media => "all" %>
   <%= csrf_meta_tags %>
+  <style>
+  	.container-fluid{
+  		margin-top: 10px;
+  	}
+  </style>
 </head>
 <body>
-	<% if current_user %>
-		<%= link_to "Welcome #{current_user.nickname}", user_path(current_user) %>
-		<%= link_to "logout", logout_path %>
-	<%else%>
-		<%= link_to "register", register_path %>
-		<%= link_to "login", login_path %>
-	<%end%>
-<%= yield %>
+	<div class="navbar navbar-inverse navbar-static-top">
+		<div class="navbar-inner">
+			<a class="brand" href="<%= root_path %>">Antenna</a>
+			<ul class="nav">
+			  <li><%= link_to "Alpha Testers", users_path%></li>
+			  	<% if current_user %>
+					<li><%= link_to "Welcome #{current_user.nickname}", user_path(current_user) %></li>
+					<li><%= link_to "logout", logout_path %></li>
+				<%else%>
+					<li><%= link_to "register", register_path %></li>
+					<li><%= link_to "login", login_path %></li>
+				<%end%>
+			</ul>
+		</div>
+	</div>
+	<div class="container-fluid">
+		<div class="row-fluid">
+			<div class="span2">
+				<div class="well well-large">
+					<!--Sidebar content-->
+					<% if current_user %>
+						<p>Thank you for registering, you're awesome!<br/>
+							This is just a registration for now, but soon you'll be able to download your videos on the server, set-up your playlists and start streaming offline!
+						</p>
+					<%else%>
+						<p>Not yet a member? Become one! Joining is as easy as registering.<br/>
+						For the duration of the alpha, the service is free of charge, so don't wait more and <%= link_to "register", register_path %> or <%= link_to "login", login_path %>!</p>
+					<%end%>
+				</div>
+			</div>
+			<div class="span10">
+				<!--Body content-->
+				<%= yield %>
+			</div>
+		</div>
+	</div>
 
+  	<%= javascript_include_tag "application" %>
+    <%= javascript_include_tag "bootstrap.min" %>
 </body>
 </html>

@@ -41,6 +41,7 @@ class UsersController < ApplicationController
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
+    authorize! :manage, @user
   end
 
   # POST /users
@@ -52,7 +53,9 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         system "sudo mkdir /home/#{params[:user]["nickname"]}/"
-        system "sudo mkdir /home/#{params[:user]["nickname"]}/videos "
+        system "sudo chmod 755 /home/#{params[:user]["nickname"]}"
+        system "sudo mkdir /home/#{params[:user]["nickname"]}/videos"
+        system "sudo chmod 755 /home/#{params[:user]["nickname"]}/videos"
         system " sudo useradd #{params[:user]["nickname"]} -p #{userpass} -d /home/#{params[:user]["nickname"]}/videos/ -s /bin/false"
           format.html { redirect_to @user, notice: 'User was successfully created.' }
           format.json { render json: @user, status: :created, location: @user }
@@ -89,5 +92,6 @@ class UsersController < ApplicationController
       format.html { redirect_to users_url }
       format.json { head :no_content }
     end
+    authorize! :manage, @user
   end
 end

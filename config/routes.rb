@@ -1,5 +1,8 @@
 Antenna::Application.routes.draw do
 
+  #resources :index_pages
+
+
   root :to => 'users#index'
   #resources :articles
 
