@@ -51,15 +51,12 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     respond_to do |format|
       if @user.save
-        success = system "sudo useradd #{params[:user]["nickname"]} -p #{userpass} -d /home/#{params[:user]["nickname"]}/videos/ -s /bin/false"
-        if success
-          system "mkdir /home/#{params[:user]["nickname"]}/"
-          system "mkdir /home/#{params[:user]["nickname"]}/videos"
-          format.html { redirect_to @user, notice: 'User was successfully created.' }
-          format.json { render json: @user, status: :created, location: @user }
-        else
-          format.html { render action: "new", notic: "Could not create the user, please try again later"}
-      else
+        system "sudo useradd #{params[:user]["nickname"]} -p #{userpass} -d /home/#{params[:user]["nickname"]}/videos/ -s /bin/false"
+        system "mkdir /home/#{params[:user]["nickname"]}/"
+        system "mkdir /home/#{params[:user]["nickname"]}/videos"
+        format.html { redirect_to @user, notice: 'User was successfully created.' }
+        format.json { render json: @user, status: :created, location: @user }
+       else
         format.html { render action: "new" }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
