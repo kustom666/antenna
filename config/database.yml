@@ -29,6 +29,6 @@ production:
   encoding: unicode
   database: antenna_prod
   pool: 5
-  username: kustom
-  password: pogo123
+  username: cstarleague
+  password: cstarleague
   timeout: 5000
