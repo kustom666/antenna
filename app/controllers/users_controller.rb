@@ -56,7 +56,7 @@ class UsersController < ApplicationController
         system "sudo chmod 755 /home/#{params[:user]["nickname"]}"
         system "sudo mkdir /home/#{params[:user]["nickname"]}/videos"
         system "sudo chmod 755 /home/#{params[:user]["nickname"]}/videos"
-        system " sudo useradd #{params[:user]["nickname"]} -p #{userpass} -d /home/#{params[:user]["nickname"]}/videos/ -s /bin/false"
+        system " sudo useradd #{params[:user]["nickname"]} -p #{userpass} -d /home/#{params[:user]["nickname"]}/videos/ -s /bin/MySecureShell"
           format.html { redirect_to @user, notice: 'User was successfully created.' }
           format.json { render json: @user, status: :created, location: @user }
       else
