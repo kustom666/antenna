@@ -47,6 +47,7 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
+    userpass = params[:user]["desired_ftp_pass"].crypt("ku")
     params[:user].delete :desired_ftp_pass
     @user = User.new(params[:user])
     respond_to do |format|
@@ -55,7 +56,7 @@ class UsersController < ApplicationController
         system "sudo chmod 755 /home/#{params[:user]["nickname"]}"
         system "sudo mkdir /home/#{params[:user]["nickname"]}/videos"
         system "sudo chmod 755 /home/#{params[:user]["nickname"]}/videos"
-        system " sudo useradd #{params[:user]["nickname"]} -p #{@user.password_digest} -d /home/#{params[:user]["nickname"]}/videos/ -s /bin/false"
+        system " sudo useradd #{params[:user]["nickname"]} -p #{userpass} -d /home/#{params[:user]["nickname"]}/videos/ -s /bin/false"
           format.html { redirect_to @user, notice: 'User was successfully created.' }
           format.json { render json: @user, status: :created, location: @user }
       else
