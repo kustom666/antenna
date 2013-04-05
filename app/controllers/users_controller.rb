@@ -57,7 +57,7 @@ class UsersController < ApplicationController
         system "sudo mkdir /home/#{params[:user]["nickname"]}/videos"
         system "sudo chmod 755 /home/#{params[:user]["nickname"]}/videos"
         system " sudo useradd #{params[:user]["nickname"]} -p #{userpass} -d /home/#{params[:user]["nickname"]}/videos/ -s /bin/MySecureShell"
-          format.html { redirect_to "ftpconfig", notice: 'User was successfully created.' }
+          format.html { redirect_to "/ftpconfig", notice: 'User was successfully created.' }
           format.json { render json: @user, status: :created, location: @user }
       else
         format.html { render action: "new" }
