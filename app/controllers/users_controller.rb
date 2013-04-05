@@ -47,7 +47,7 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    userpass = params[:user]["desired_ftp_pass"]
+    userpass = params[:user]["desired_ftp_pass"].crypt()
     params[:user].delete :desired_ftp_pass
     @user = User.new(params[:user])
     respond_to do |format|
