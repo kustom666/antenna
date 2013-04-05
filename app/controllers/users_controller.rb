@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  load_and_authorize_resource
-  skip_authorize_resource :only => [:new, :show]
+  #load_and_authorize_resource
+  #skip_authorize_resource :only => [:new, :create, :show]
 
   # GET /users
   # GET /users.json
@@ -46,13 +46,12 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    command = "useradd #{params[:nickname]} -p #{params[:desired_ftp_pass]} -d /home/#{params[:nickname]}/videos/ -s /bin/false"
+    userpass = params[:user]["desired_ftp_pass"]
     params[:user].delete :desired_ftp_pass
     @user = User.new(params[:user])
     respond_to do |format|
       if @user.save
-        system command
-
+        system "useradd #{params[:user]["nickname"]} -p #{userpass} -d /home/#{params[:user]["nickname"]}/videos/ -s /bin/false"
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
       else
