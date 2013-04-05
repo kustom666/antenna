@@ -13,6 +13,7 @@ Antenna::Application.routes.draw do
   get 'register', to: 'users#new', as: 'register'
   get 'login', to: 'sessions#new', as: 'login'
   get 'logout', to: 'sessions#destroy', as: 'logout'
+  get 'ftpconfig', to: 'static#ftptutorial', as: 'ftpconfig'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
