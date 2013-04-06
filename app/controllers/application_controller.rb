@@ -9,4 +9,9 @@ class ApplicationController < ActionController::Base
   	  @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
   helper_method :current_user
+  #The global md renderer
+  def mdrender
+  	@markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, :autolink => true, :space_after_headers => true)
+  end
+  helper_method :mdrender
 end

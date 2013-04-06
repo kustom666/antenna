@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130405164113) do
+ActiveRecord::Schema.define(:version => 20130405233013) do
 
   create_table "articles", :force => true do |t|
     t.string   "title"
@@ -28,11 +28,37 @@ ActiveRecord::Schema.define(:version => 20130405164113) do
 
   add_index "articles", ["user_id"], :name => "index_articles_on_user_id"
 
+  create_table "emitters", :force => true do |t|
+    t.string   "title"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "user_id"
+    t.integer  "provider_id"
+  end
+
   create_table "index_pages", :force => true do |t|
     t.string   "title"
     t.text     "body"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "playlists", :force => true do |t|
+    t.string   "title"
+    t.text     "description"
+    t.integer  "user_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "playlists", ["user_id"], :name => "index_playlists_on_user_id"
+
+  create_table "providers", :force => true do |t|
+    t.string   "name"
+    t.string   "rtmp_url"
+    t.text     "description"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
   end
 
   create_table "users", :force => true do |t|
@@ -43,6 +69,14 @@ ActiveRecord::Schema.define(:version => 20130405164113) do
     t.datetime "updated_at",      :null => false
     t.boolean  "admin"
     t.boolean  "regular"
+  end
+
+  create_table "videos", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.integer  "user_id"
+    t.integer  "playlist_id"
   end
 
 end

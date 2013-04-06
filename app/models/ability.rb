@@ -7,11 +7,18 @@ class Ability
     user ||= User.new # guest user (not logged in)
     if user.admin?
         can :manage, :all
-    else
+    elsif user.regular?
         cannot :read, :users
         can :read, :articles
-
+        can :read, :providers
+        if user.emitter
+            can :manage, Emitter, :id => user.emitter
+        end
+        can :read, Video, :user_id => user.id
+        can :manage, Video, :user_id => user.id
         can :manage, User, :id => user.id
+        can :manage, Playlist, :user_id => user.id
+        cannot :index, Emitter
     end
     #
     # The first argument to `can` is the action you are giving the user 

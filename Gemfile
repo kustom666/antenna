@@ -9,6 +9,8 @@ gem 'pg'
 gem 'newrelic_rpm'
 gem 'cancan'
 gem "paperclip"
+gem "high_voltage"
+gem "redcarpet"
 
 # Gems used only for assets and not required
 # in production environments by default.

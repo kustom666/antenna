@@ -1,0 +1,13 @@
+<p id="notice"><%= notice %></p>
+
+<h1><%= @provider.name %></h1>
+
+<p>
+  <b>Description:</b>
+  <%= mdrender.render(@provider.description).html_safe %>
+</p>
+
+
+<% if current_user && current_user.admin %>
+<%= link_to 'Edit', edit_provider_path(@provider) %>
+<% end %>

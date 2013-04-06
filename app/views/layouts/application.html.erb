@@ -16,8 +16,15 @@
 			<a class="brand" href="<%= root_path %>">Antenna</a>
 			<ul class="nav">
 			  <li><%= link_to "Alpha Testers", users_path%></li>
+			  <li><%= link_to "Supported livestreams", providers_path%></li>
 			  	<% if current_user %>
+			  		
 					<li><%= link_to "Welcome #{current_user.nickname}", user_path(current_user) %></li>
+					<% if current_user.emitter %>
+						<li><%= link_to "Your Emitter", emitter_path(current_user.emitter)%></li>
+					<%else%>
+						<li><%= link_to "Create your Emitter", new_emitter_path %></li>
+					<%end%>
 					<li><%= link_to "logout", logout_path %></li>
 				<%else%>
 					<li><%= link_to "register", register_path %></li>
@@ -47,7 +54,9 @@
 			</div>
 		</div>
 	</div>
-
+	<footer>
+		All the work is the property of Paul Forti
+	</footer>
   	<%= javascript_include_tag "application" %>
     <%= javascript_include_tag "bootstrap.min" %>
 </body>

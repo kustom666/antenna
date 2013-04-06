@@ -1,0 +1,21 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Title:</b>
+  <%= @emitter.title %>
+</p>
+
+<p>
+  <b>Provider:</b>
+  <%= @emitter.provider.name %>
+</p>
+
+<p>
+  <b>User:</b>
+  <%= @emitter.user.nickname %>
+</p>
+
+
+<%= link_to 'Edit', edit_emitter_path(@emitter) %> |
+<%= link_to 'Back', emitters_path %>
+

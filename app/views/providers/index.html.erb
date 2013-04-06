@@ -1,0 +1,10 @@
+<h1>The livestream providers we support</h1>
+
+<% @providers.each do |provider| %>
+  <div class="well well-large">
+    <h1><%=provider.name%></h1>
+    <%= mdrender.render(provider.description).html_safe%>
+  </div>
+<% end %>
+
+<br />
