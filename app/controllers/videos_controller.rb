@@ -37,6 +37,8 @@ class VideosController < ApplicationController
 
   # GET /videos/1/edit
   def edit
+    @files = Array.new
+    Dir.foreach("/home/#{@current_user.nickname}/videos"){ |f| @files << f if f.include? ".flv"}
     @video = Video.find(params[:id])
   end
 
