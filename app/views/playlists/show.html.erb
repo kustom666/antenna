@@ -13,8 +13,11 @@
 <p>
   <b>Videos:</b>
   <% @playlist.videos.each do |video| %>
-  	<%= link_to video.name, video_path(video) %> | <%= link_to "Edit", edit_video_path(video)%> | <%= link_to "Delete", video , method: :delete %>
+  	<%= link_to video.name, video_path(video) %> | <%= link_to "Edit", edit_video_path(video)%> | <%= link_to "Delete", video , method: :delete %><br/>
   <%end%>
+</p>
+<p>
+	You should <%= link_to "add some videos", new_video_path %>
 </p>
 <% if @playlist.live %>
 <%= link_to "Stop the live", stop_live_playlist_path(@playlist) %>

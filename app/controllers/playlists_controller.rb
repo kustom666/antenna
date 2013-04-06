@@ -88,9 +88,6 @@ class PlaylistsController < ApplicationController
     emitter = user.emitter
     provider = emitter.provider
     File.open("/home/deployer/playlist#{user.nickname}.sh", 'w+') {|f| f.write("while true; do\nfor f in $@; do\n ffmpeg -re -i \"$f\" -vcodec copy -acodec copy -f flv #{provider.rtmp_url}#{emitter.live_key} \ndone \ndone") }
-    #script << "while true; do\nfor f in $@; do\n ffmpeg -re -i \"$f\" -vcodec copy -acodec copy -f flv #{provider.rtmp_url}#{emitter.live_key} \ndone \ndone"
-    #puts "\n\nrunning : sed \'s/?push_path/#{emitter.live_key}/g\' /home/deployer/scriptvideo.sh > /home/deployer/playlist#{user.nickname}.sh\n\n"
-    #system("sed \'s/?push_path/#{provider.rtmp_url}#{emitter.live_key}/g\' /home/deployer/scriptvideo.sh > /home/deployer/playlist#{user.nickname}.sh")
     playliststring = ""
     @playlist.videos.each do |video|
       playliststring << "/home/#{user.nickname}/videos/#{video.name} "

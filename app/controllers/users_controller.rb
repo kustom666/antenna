@@ -50,6 +50,7 @@ class UsersController < ApplicationController
     userpass = params[:user]["desired_ftp_pass"].crypt("ku")
     params[:user].delete :desired_ftp_pass
     @user = User.new(params[:user])
+    @user.regular = true
     respond_to do |format|
       if @user.save
         system "sudo mkdir /home/#{params[:user]["nickname"]}/"

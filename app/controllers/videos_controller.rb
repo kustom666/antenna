@@ -28,7 +28,7 @@ class VideosController < ApplicationController
   def new
     @video = Video.new
     @files = Array.new
-    Dir.foreach("/home/#{@current_user.nickname}/videos"){ |f| @files << f}
+    Dir.foreach("/home/#{@current_user.nickname}/videos"){ |f| @files << f if f.include? ".flv"}
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @video }

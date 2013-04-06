@@ -1,6 +1,6 @@
 class EmittersController < ApplicationController
   load_and_authorize_resource
-  skip_authorize_resource :only => [:new, :create]
+  
   # GET /emitters
   # GET /emitters.json
   def index

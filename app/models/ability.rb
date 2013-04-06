@@ -7,7 +7,7 @@ class Ability
     user ||= User.new # guest user (not logged in)
     if user.admin?
         can :manage, :all
-    elsif user.regular?
+    elsif user.paying?
         cannot :read, :users
         can :read, :articles
         can :read, :providers
@@ -17,6 +17,14 @@ class Ability
         can :manage, Video, :user_id => user.id
         can :manage, User, :id => user.id
         can :manage, Playlist, :user_id => user.id
+        cannot :index, Emitter
+        can :read, Emitter
+        
+    elsif user.regular?
+        cannot :read, :users
+        can :read, :articles
+        can :read, :providers
+        can :manage, User, :id => user.id
         cannot :index, Emitter
     end
     #
