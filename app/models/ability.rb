@@ -11,9 +11,8 @@ class Ability
         cannot :read, :users
         can :read, :articles
         can :read, :providers
-        if user.emitter
-            can :manage, Emitter, :id => user.emitter
-        end
+        can :read, Emitter, :user_id => user.id
+        can :manage, Emitter, :user_id=> user.id
         can :read, Video, :user_id => user.id
         can :manage, Video, :user_id => user.id
         can :manage, User, :id => user.id

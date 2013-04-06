@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   validates_presence_of :email, :nickname
   validates_uniqueness_of :email, :nickname
   has_one :emitter
+  has_one :playlist
 
     validates_format_of :email,
                       :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/, :on => :create,

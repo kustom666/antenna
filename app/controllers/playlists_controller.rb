@@ -81,4 +81,44 @@ class PlaylistsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  def start_live
+    @playlist = Playlist.find(params[:id])
+    user = @playlist.user
+    emitter = user.emitter
+    provider = emitter.provider
+    script = File.new("/home/deployer/playlist#{user.nickname}.sh", "w+")
+    script << "while true; do\nfor f in $@; do\n ffmpeg -re -i \"$f\" -vcodec copy -acodec copy -f flv #{provider.rtmp_url}#{emitter.live_key} \ndone \ndone"
+    playliststring = ""
+    @playlist.videos.each do |video|
+      playliststring << "/home/#{user.nickname}/videos/#{video.name} "
+    end
+    puts "\n\n#{playliststring}\n\n"
+
+    if @playlist.live
+      redirect_to @playlist, notice: "The playlist is already live!"
+    else
+      puts "\n\nscreen -mdS #{user.nickname} sh /home/deployer/playlist#{user.nickname}.sh #{playliststring}\n\n"
+      system("screen -mdS #{user.nickname} sh /home/deployer/playlist#{user.nickname}.sh #{playliststring}")
+      @playlist.live = true
+      @playlist.save
+      redirect_to @playlist, notice: "The playlist is live!"
+    end
+  end
+
+  def stop_live
+    playlist = Playlist.find(params[:id])
+    user = playlist.user
+    system("screen -S #{user.nickname} -X quit") 
+    playlist.live = false
+    playlist.save
+    redirect_to playlist, notice: "The playlist has been stopped!"
+  end
+
+  def force_stop
+    playlist = playlist.find(params[:id])
+    playlist.live = false
+    playlist.save
+    redirect_to playlist, notice: "The playlist has been forced as offline"
+  end
 end

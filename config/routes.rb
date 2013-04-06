@@ -1,6 +1,11 @@
 Antenna::Application.routes.draw do
 
-  resources :playlists
+  resources :playlists do
+    member do
+      get 'start_live'
+      get 'stop_live'
+    end
+  end
 
 
   resources :videos

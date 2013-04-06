@@ -11,10 +11,15 @@
 </p>
 
 <p>
-  <b>User:</b>
-  <%= @playlist.user %>
+  <b>Videos:</b>
+  <% @playlist.videos.each do |video| %>
+  	<%= link_to video.name, video_path(video) %> | <%= link_to "Edit", edit_video_path(video)%> | <%= link_to "Delete", video , method: :delete %>
+  <%end%>
 </p>
-
-
+<% if @playlist.live %>
+<%= link_to "Stop the live", stop_live_playlist_path(@playlist) %>
+<% else %>
+<%= link_to "Start the live", start_live_playlist_path(@playlist) %>
+<% end %>
 <%= link_to 'Edit', edit_playlist_path(@playlist) %> |
 <%= link_to 'Back', playlists_path %>

@@ -13,10 +13,10 @@
 
   <div class="field">
     <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <%= f.select(:name, @files) %>
   </div>
   <div class="field">
-    <%= f.label :name %><br />
+    <%= f.label :playlist_id %><br />
     <%= f.collection_select(:playlist_id, Playlist.where(:user_id => current_user), :id, :title)%>
   </div>
   <div class="actions">

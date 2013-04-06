@@ -27,7 +27,8 @@ class VideosController < ApplicationController
   # GET /videos/new.json
   def new
     @video = Video.new
-
+    @files = Array.new
+    Dir.foreach("/home/#{@current_user.nickname}/videos"){ |f| @files << f}
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @video }
