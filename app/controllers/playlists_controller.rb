@@ -89,7 +89,7 @@ class PlaylistsController < ApplicationController
     provider = emitter.provider
     #script = File.new("/home/deployer/playlist#{user.nickname}.sh", "w+")
     #script << "while true; do\nfor f in $@; do\n ffmpeg -re -i \"$f\" -vcodec copy -acodec copy -f flv #{provider.rtmp_url}#{emitter.live_key} \ndone \ndone"
-    system("sed 's/?push_path/#{provider.rtmp_url}#{emitter.live_key}/g' /home/deployer/videoscript.sh > /home/deployer/playlist#{user.nickname}.sh")
+    system("sed 's/?push_path/#{provider.rtmp_url}#{emitter.live_key}/g' /home/deployer/scriptvideo.sh > /home/deployer/playlist#{user.nickname}.sh")
     playliststring = ""
     @playlist.videos.each do |video|
       playliststring << "/home/#{user.nickname}/videos/#{video.name} "
