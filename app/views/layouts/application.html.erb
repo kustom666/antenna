@@ -41,8 +41,9 @@
 				<div class="well well-large">
 					<!--Sidebar content-->
 					<% if current_user %>
-						<p>Thank you for registering, you're awesome!<br/>
-							This is just a registration for now, but soon you'll be able to download your videos on the server, set-up your playlists and start streaming offline!
+						<p>The Alpha test is now live!<br/>
+							You can start by uploading some FLV videos to the server via sFTP, then create <%= link_to "Your Emitter", new_emitter_path %>.
+
 						</p>
 					<%else%>
 						<p>Not yet a member? Become one! Joining is as easy as registering.<br/>
@@ -52,7 +53,9 @@
 			</div>
 			<div class="span10">
 				<!--Body content-->
-				<%= yield %>
+				<div class="well well-large">
+					<%= yield %>
+				</div>
 			</div>
 		</div>
 	</div>

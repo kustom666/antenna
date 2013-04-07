@@ -1,4 +1,4 @@
-<%= form_for(@index_page) do |f| %>
+<%= bootstrap_form_for(@index_page) do |f| %>
   <% if @index_page.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@index_page.errors.count, "error") %> prohibited this index_page from being saved:</h2>
@@ -20,6 +20,6 @@
     <%= f.text_area :body %>
   </div>
   <div class="actions">
-    <%= f.submit %>
+    <%= f.primary "Create this index page"%>
   </div>
 <% end %>

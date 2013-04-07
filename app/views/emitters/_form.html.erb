@@ -1,4 +1,4 @@
-<%= form_for(@emitter) do |f| %>
+<%= bootstrap_form_for(@emitter) do |f| %>
   <% if @emitter.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@emitter.errors.count, "error") %> prohibited this emitter from being saved:</h2>
@@ -24,6 +24,6 @@
     <%= f.text_field :live_key %>
   </div>  
   <div class="actions">
-    <%= f.submit %>
+    <%= f.primary "Create this provider"%>
   </div>
 <% end %>
