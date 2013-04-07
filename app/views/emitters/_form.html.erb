@@ -1,26 +1,15 @@
-<%= bootstrap_form_for(@emitter) do |f| %>
+<%= bootstrap_form_for(@emitter, html: { class: 'form-horizontal' }, help: :block) do |f| %>
   <% if @emitter.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@emitter.errors.count, "error") %> prohibited this emitter from being saved:</h2>
-
-      <ul>
-      <% @emitter.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
-      <% end %>
-      </ul>
-    </div>
+    <%= f.alert_message "Please fix the errors below." %>
   <% end %>
 
   <div class="field">
-    <%= f.label :title %><br />
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :provider %><br />
     <%= f.collection_select(:provider_id, Provider.all, :id, :name)%>
   </div>
   <div class="field">
-    <%= f.label :live_key %><br />
     <%= f.text_field :live_key %>
   </div>  
   <div class="actions">
