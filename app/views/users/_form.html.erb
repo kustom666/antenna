@@ -21,12 +21,13 @@
   </div>
 
   <% if current_user && current_user.admin %>
-    <div class="field">
-      <%= f.check_box :admin %>
-    </div>
+    <%= f.control_group :type, label: { text: 'Account type' } do %>
+      <%= f.check_box :admin, label: 'Admin' %>
+      <%= f.check_box :admin, label: 'Paying' %>
+    <% end %>
   <%end%>
 
-  <div class="actions">
+  <%= f.actions do %>
     <%= f.primary "Create your account"%>
-  </div>
+  <%end%>
 <% end %>

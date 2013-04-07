@@ -12,9 +12,20 @@
 
 <p>
   <b>Videos:</b>
-  <% @playlist.videos.each do |video| %>
-  	<%= link_to video.name, video_path(video) %> | <%= link_to "Edit", edit_video_path(video)%> | <%= link_to "Delete", video , method: :delete %><br/>
-  <%end%>
+	<table class="table">
+		<tr>
+			<th>Video's name</th>
+			<th>Edit the video</th>
+			<th>Delete the video</th>
+		</tr>
+		<% @playlist.videos.each do |video| %>
+		<tr>
+			<td><%= link_to video.name, video_path(video) %></td>
+			<td><%= link_to "Edit", edit_video_path(video)%></td>
+			<td><%= link_to "Delete", video , method: :delete %></td>
+		</tr>
+		<%end%>
+	</table>
 </p>
 <p>
 	You should <%= link_to "add some videos", new_video_path %>

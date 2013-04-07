@@ -2,17 +2,10 @@
   <% if @provider.errors.any? %>
     <%= f.alert_message "Please fix the errors below." %>
   <% end %>
-
-  <div class="field">
-    <%= f.text_field :name %>
-  </div>
-  <div class="field">
-    <%= f.text_field :rtmp_url %>
-  </div>
-  <div class="field">
-    <%= f.text_area :description %>
-  </div>
-  <div class="actions">
+  <%= f.text_field :name %>
+  <%= f.text_field :rtmp_url %>
+  <%= f.text_area :description %>
+  <%= f.actions do %>
     <%= f.primary "Add your emitter"%>
-  </div>
+  <%end%>
 <% end %>
