@@ -87,19 +87,19 @@ class PlaylistsController < ApplicationController
     user = @playlist.user
     emitter = user.emitter
     provider = emitter.provider
-    File.open("/home/deployer/playlist#{user.nickname}.sh", 'w+') {|f| f.write("while true; do\nfor f in $@; do\n ffmpeg -re -i \"$f\" -vcodec copy -acodec copy -f flv #{provider.rtmp_url}#{emitter.live_key} \ndone \ndone") }
-    playliststring = ""
-    @playlist.videos.each do |video|
-      playliststring << "/home/#{user.nickname}/videos/#{video.name} "
+    list = ""
+    @playlist.each do |video|
+      list << "file '/home/#user.nickname/videos/#{video.name}'\n"
     end
-    puts "\n\n#{playliststring}\n\n"
+    File.open("/home/deployer/videolist#{user.nickname}", 'w+') {|f| f.write(list) }
+    File.open("/home/deployer/playlist#{user.nickname}.sh", 'w+') {|f| f.write("while true; do\nffmpeg -re -f concat -i /home/deployer/videolist#{user.nickname} -c copy -f flv #{provider.rtmp_url}#{emitter.live_key}\ndone") }
 
     if @playlist.live
       redirect_to @playlist, notice: "The playlist is already live!"
     else
-      puts "\n\nscreen -mdS #{user.nickname} sh /home/deployer/playlist#{user.nickname}.sh #{playliststring}\n\n"
+      puts "\n\nscreen -mdS #{user.nickname} sh /home/deployer/playlist#{user.nickname}.sh\n\n"
       system("sudo chmod -R 755 /home/#{user.nickname}")
-      system("screen -mdS #{user.nickname} sh /home/deployer/playlist#{user.nickname}.sh #{playliststring}")
+      system("screen -mdS #{user.nickname} sh /home/deployer/playlist#{user.nickname}.sh")
       @playlist.live = true
       @playlist.save
       redirect_to @playlist, notice: "The playlist is live!"
