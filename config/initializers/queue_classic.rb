@@ -1,1 +1,1 @@
-ENV["DATABASE_URL"] = "postgres://pgantenna:antennacathodichertz@localhost/antenna_prod"
+ENV["DATABASE_URL"] = "postgres://antennadb:antennacathodichertz@localhost/antenna_prod"
