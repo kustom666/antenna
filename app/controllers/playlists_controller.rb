@@ -88,7 +88,7 @@ class PlaylistsController < ApplicationController
     emitter = user.emitter
     provider = emitter.provider
     list = ""
-    @playlist.each do |video|
+    @playlist.videos.each do |video|
       list << "file '/home/#user.nickname/videos/#{video.name}'\n"
     end
     File.open("/home/deployer/videolist#{user.nickname}", 'w+') {|f| f.write(list) }
