@@ -4,7 +4,7 @@ class VideosController < ApplicationController
   # GET /videos
   # GET /videos.json
   def index
-    @videos = Video.all
+    @videos = Video.where(:user_id => current_user)
 
     respond_to do |format|
       format.html # index.html.erb

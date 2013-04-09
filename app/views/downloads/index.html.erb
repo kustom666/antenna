@@ -1,11 +1,10 @@
-<h1>Listing downloads</h1>
+<h1>Listing current downloads</h1>
 
-<table>
+<table class="table">
   <tr>
     <th>Url</th>
     <th>Name</th>
-    <th>User</th>
-    <th></th>
+    <th>Finished at</th>
     <th></th>
     <th></th>
   </tr>
@@ -14,10 +13,9 @@
   <tr>
     <td><%= download.url %></td>
     <td><%= download.name %></td>
-    <td><%= download.user %></td>
-    <td><%= link_to 'Show', download %></td>
-    <td><%= link_to 'Edit', edit_download_path(download) %></td>
-    <td><%= link_to 'Destroy', download, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= download.finished_at %></td>
+    <td><%= link_to 'Show', download , :class => "btn btn-primary"%></td>
+    <td><%= link_to 'Destroy', download, method: :delete, data: { confirm: 'Are you sure?' } , :class => "btn btn-danger"%></td>
   </tr>
 <% end %>
 </table>

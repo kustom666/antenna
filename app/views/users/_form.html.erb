@@ -3,22 +3,11 @@
     <%= f.alert_message "Please fix the errors below." %>
   <% end %>
 
-  <div class="field">
     <%= f.text_field :nickname %>
-  </div>
-  <div class="field">
     <%= f.text_field :email%>
-  </div>
-  <div class="field">
     <%= f.password_field :password %>
-  </div>
-  <div class="field">
     <%= f.password_field :password_confirmation %>
-  </div>
-
-  <div class="field">
     <%= f.password_field :desired_ftp_pass %>
-  </div>
 
   <% if current_user && current_user.admin %>
     <%= f.control_group :type, label: { text: 'Account type' } do %>

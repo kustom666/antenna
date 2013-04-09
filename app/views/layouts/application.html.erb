@@ -17,21 +17,29 @@
 			<ul class="nav">
 			  <li><%= link_to "Alpha Testers", users_path%></li>
 			  <li><%= link_to "Supported livestreams", providers_path%></li>
-			  	<% if current_user %>
-			  		
-					<li><%= link_to "Welcome #{current_user.nickname}", user_path(current_user) %></li>
-					<% if current_user.emitter %>
-						<li><%= link_to "Your Emitter", emitter_path(current_user.emitter)%></li>
-						<li><%= link_to "Your playlists", playlists_path%></li>
-						<li><%= link_to "Your videos", videos_path%></li>
-					<%else%>
-						<li><%= link_to "Create your Emitter", new_emitter_path %></li>
-					<%end%>
-					<li><%= link_to "logout", logout_path %></li>
-				<%else%>
-					<li><%= link_to "register", register_path %></li>
-					<li><%= link_to "login", login_path %></li>
-				<%end%>
+		  		<div class="btn-group">
+		  			<button class="btn btn-inverse dropdown-toggle" data-toggle="dropdown">
+		  				Your account
+		  				<span class="caret"></span>
+		  			</button>
+		  			<ul class="dropdown-menu">
+					  	<% if current_user %>
+							<li><%= link_to "Welcome #{current_user.nickname}", user_path(current_user)%></li>
+							<li class="divider"></li>
+							<% if current_user.emitter %>
+								<li><%= link_to "Your Emitter", emitter_path(current_user.emitter)%></li>
+								<li><%= link_to "Your playlists", playlists_path%></li>
+								<li><%= link_to "Your videos", videos_path%></li>
+							<%else%>
+								<li><%= link_to "Create your Emitter", new_emitter_path %></li>
+							<%end%>
+							<li><%= link_to "logout", logout_path %></li>
+						<%else%>
+							<li><%= link_to "register", register_path %></li>
+							<li><%= link_to "login", login_path %></li>
+						<%end%>
+					</ul>
+				</div>
 			</ul>
 		</div>
 	</div>

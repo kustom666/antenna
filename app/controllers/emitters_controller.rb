@@ -16,7 +16,9 @@ class EmittersController < ApplicationController
   # GET /emitters/1.json
   def show
     @emitter = Emitter.find(params[:id])
-
+    @playlists = Playlist.where(:user_id => current_user)
+    @videos = Video.where(:user_id => current_user)
+    @downloads = Download.where(:user_id => current_user)
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @emitter }

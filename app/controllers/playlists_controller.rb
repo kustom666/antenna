@@ -3,7 +3,7 @@ class PlaylistsController < ApplicationController
   # GET /playlists
   # GET /playlists.json
   def index
-    @playlists = Playlist.all
+    @playlists = Playlist.where(:user_id => current_user)
 
     respond_to do |format|
       format.html # index.html.erb

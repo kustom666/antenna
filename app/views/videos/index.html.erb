@@ -9,17 +9,15 @@
   </tr>
 
 <% @videos.each do |video| %>
-  <% if video.user == current_user %>
     <tr>
       <td><%= video.name %></td>
-      <td><%= link_to 'Show', video %></td>
-      <td><%= link_to 'Edit', edit_video_path(video) %></td>
-      <td><%= link_to 'Destroy', video, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <td><%= link_to 'Show', video , :class => "btn btn-primary"%></td>
+      <td><%= link_to 'Edit', edit_video_path(video) , :class => "btn btn-primary"%></td>
+      <td><%= link_to 'Destroy', video, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %></td>
     </tr>
-  <%end%>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Video', new_video_path %>
+<%= link_to 'New Video', new_video_path , :class => "btn btn-primary"%>

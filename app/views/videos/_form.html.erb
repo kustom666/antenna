@@ -3,13 +3,9 @@
     <%= f.alert_message "Please fix the errors below." %>
   <% end %>
 
-  <div class="field">
     <%= f.select(:name, @files) %>
-  </div>
-  <div class="field">
     <%= f.collection_select(:playlist_id, Playlist.where(:user_id => current_user), :id, :title)%>
-  </div>
-  <div class="form-actions">
+  <%= f.actions do %>
     <%= f.primary "Add a video"%>
-  </div>
+  <% end %>
 <% end %>

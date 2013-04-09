@@ -13,6 +13,7 @@ class Ability
         can :read, :providers
         can :read, Emitter, :user_id => user.id
         can :manage, Emitter, :user_id=> user.id
+        can :manage, Download, :user_id=> user.id
         can :read, Video, :user_id => user.id
         can :manage, Video, :user_id => user.id
         can :manage, User, :id => user.id

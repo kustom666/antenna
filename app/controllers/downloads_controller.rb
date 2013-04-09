@@ -3,7 +3,7 @@ class DownloadsController < ApplicationController
   # GET /downloads
   # GET /downloads.json
   def index
-    @downloads = Download.all
+    @downloads = Download.where(:user_id => current_user)
 
     respond_to do |format|
       format.html # index.html.erb
@@ -33,11 +33,6 @@ class DownloadsController < ApplicationController
     end
   end
 
-  # GET /downloads/1/edit
-  def edit
-    @download = Download.find(params[:id])
-  end
-
   # POST /downloads
   # POST /downloads.json
   def create
@@ -50,22 +45,6 @@ class DownloadsController < ApplicationController
         format.json { render json: @download, status: :created, location: @download }
       else
         format.html { render action: "new" }
-        format.json { render json: @download.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PUT /downloads/1
-  # PUT /downloads/1.json
-  def update
-    @download = Download.find(params[:id])
-
-    respond_to do |format|
-      if @download.update_attributes(params[:download])
-        format.html { redirect_to @download, notice: 'Download was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
         format.json { render json: @download.errors, status: :unprocessable_entity }
       end
     end

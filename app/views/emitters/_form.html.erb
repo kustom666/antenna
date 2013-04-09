@@ -3,16 +3,10 @@
     <%= f.alert_message "Please fix the errors below." %>
   <% end %>
 
-  <div class="field">
     <%= f.text_field :title %>
-  </div>
-  <div class="field">
     <%= f.collection_select(:provider_id, Provider.all, :id, :name)%>
-  </div>
-  <div class="field">
     <%= f.text_field :live_key %>
-  </div>  
-  <div class="actions">
+  <%= f.actions do%>
     <%= f.primary "Create this provider"%>
-  </div>
+  <% end %>
 <% end %>

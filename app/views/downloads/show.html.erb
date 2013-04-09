@@ -1,4 +1,4 @@
-<p id="notice"><%= notice %></p>
+<% if notice %><div class="alert alert-info"><%= notice %></div><% end %><%= notice %></p>
 
 <p>
   <b>Url:</b>
@@ -12,9 +12,7 @@
 
 <p>
   <b>User:</b>
-  <%= @download.user %>
+  <%= @download.user.nickname %>
 </p>
 
-
-<%= link_to 'Edit', edit_download_path(@download) %> |
-<%= link_to 'Back', downloads_path %>
+<%= link_to 'Back', downloads_path , :class => "btn btn-primary"%>

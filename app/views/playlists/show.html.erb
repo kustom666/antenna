@@ -21,19 +21,19 @@
 		<% @playlist.videos.each do |video| %>
 		<tr>
 			<td><%= link_to video.name, video_path(video) %></td>
-			<td><%= link_to "Edit", edit_video_path(video)%></td>
-			<td><%= link_to "Delete", video , method: :delete %></td>
+			<td><%= link_to "Edit", edit_video_path(video), :class => "btn btn-primary"%></td>
+			<td><%= link_to "Delete", video , method: :delete , :class => "btn btn-primary"%></td>
 		</tr>
 		<%end%>
 	</table>
 </p>
 <p>
-	You should <%= link_to "add some videos", new_video_path %>
+	You should <%= link_to "add some videos", new_video_path , :class => "btn btn-primary"%>
 </p>
 <% if @playlist.live %>
-<%= link_to "Stop the live", stop_live_playlist_path(@playlist) %>
+<%= link_to "Stop the live", stop_live_playlist_path(@playlist) , :class => "btn btn-danger"%>
 <% else %>
-<%= link_to "Start the live", start_live_playlist_path(@playlist) %>
+<%= link_to "Start the live", start_live_playlist_path(@playlist) , :class => "btn btn-success"%>
 <% end %>
-<%= link_to 'Edit', edit_playlist_path(@playlist) %> |
-<%= link_to 'Back', playlists_path %>
+<%= link_to 'Edit', edit_playlist_path(@playlist) , :class => "btn btn-primary"%> |
+<%= link_to 'Back', playlists_path , :class => "btn btn-primary"%>
