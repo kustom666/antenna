@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
                       :message => "your nickname must not contain any special characters"
   has_one :emitter
   has_one :playlist
+  has_many :downloads
 
     validates_format_of :email,
                       :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/, :on => :create,

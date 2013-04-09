@@ -1,5 +1,8 @@
 Antenna::Application.routes.draw do
 
+  resources :downloads
+
+
   resources :playlists do
     member do
       get 'start_live'

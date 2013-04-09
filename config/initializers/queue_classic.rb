@@ -1,0 +1,1 @@
+ENV["DATABASE_URL"] = "postgres://pgantenna:antennacathodichertz@localhost/antenna_prod"
