@@ -89,7 +89,7 @@ class PlaylistsController < ApplicationController
     provider = emitter.provider
     list = ""
     @playlist.videos.each do |video|
-      list << "file '/home/#user.nickname/videos/#{video.name}'\n"
+      list << "file '/home/#{user.nickname}/videos/#{video.name}'\n"
     end
     File.open("/home/deployer/videolist#{user.nickname}", 'w+') {|f| f.write(list) }
     File.open("/home/deployer/playlist#{user.nickname}.sh", 'w+') {|f| f.write("while true; do\nffmpeg -re -f concat -i /home/deployer/videolist#{user.nickname} -c copy -f flv #{provider.rtmp_url}#{emitter.live_key}\ndone") }
