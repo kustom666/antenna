@@ -5,6 +5,7 @@
 
     <%= f.select(:name, @files) %>
     <%= f.collection_select(:playlist_id, Playlist.where(:user_id => current_user), :id, :title)%>
+    <%= f.number_field :number %>
   <%= f.actions do %>
     <%= f.primary "Add a video"%>
   <% end %>

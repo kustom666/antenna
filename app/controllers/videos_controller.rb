@@ -52,6 +52,8 @@ class VideosController < ApplicationController
         format.html { redirect_to @video, notice: 'Video was successfully created.' }
         format.json { render json: @video, status: :created, location: @video }
       else
+        @files = Array.new
+        Dir.foreach("/home/#{@current_user.nickname}/videos"){ |f| @files << f if f.include? ".flv"}
         format.html { render action: "new" }
         format.json { render json: @video.errors, status: :unprocessable_entity }
       end
@@ -62,6 +64,8 @@ class VideosController < ApplicationController
   # PUT /videos/1.json
   def update
     @video = Video.find(params[:id])
+    @files = Array.new
+    Dir.foreach("/home/#{@current_user.nickname}/videos"){ |f| @files << f if f.include? ".flv"}
 
     respond_to do |format|
       if @video.update_attributes(params[:video])
