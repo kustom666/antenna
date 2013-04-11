@@ -16,4 +16,23 @@ class User < ActiveRecord::Base
                       :message => 'Please input a correct email'
 
 
+  def self.create_on_disk(username, userpass) 
+    userpass = userpass.crypt("ku")
+    system "sudo mkdir /home/#{username}/" 
+    system "sudo chmod 755 /home/#{username}"
+    system "sudo mkdir /home/#{username}/videos"
+    system "sudo chmod 755 /home/#{username}/videos"
+    system "sudo useradd #{username} -p #{userpass} -d /home/#{username}/videos/ -G livepushers -s /bin/MySecureShell"
+    system "sudo chown -R #{username} /home/#{username}"
+  end
+
+  def self.delete_on_disk(username)
+    system "sudo userdel #{username}"
+  end
+
+  def self.update_ftp_password(username, new_pass)
+    new_pass = new_pass.crypt("ku")
+    system "sudo usermod -p #{new_pass} #{username}"
+  end
+
 end

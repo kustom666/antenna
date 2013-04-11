@@ -47,20 +47,15 @@ class UsersController < ApplicationController
   # POST /users
   # POST /users.json
   def create
-    userpass = params[:user]["desired_ftp_pass"].crypt("ku")
+    userpass = params[:user]["desired_ftp_pass"]
     params[:user].delete :desired_ftp_pass
     @user = User.new(params[:user])
     @user.regular = true
     respond_to do |format|
       if @user.save
-        system "sudo mkdir /home/#{params[:user]["nickname"]}/"
-        system "sudo chmod 755 /home/#{params[:user]["nickname"]}"
-        system "sudo mkdir /home/#{params[:user]["nickname"]}/videos"
-        system "sudo chmod 755 /home/#{params[:user]["nickname"]}/videos"
-        system "sudo useradd #{params[:user]["nickname"]} -p #{userpass} -d /home/#{params[:user]["nickname"]}/videos/ -G livepushers -s /bin/MySecureShell"
-        system "sudo chown -R #{params[:user]["nickname"]} /home/#{params[:user]["nickname"]}"
-          format.html { redirect_to page_path("ftptutorial"), notice: 'User was successfully created.' }
-          format.json { render json: @user, status: :created, location: @user }
+        User.create_on_disk(@user.nickname, userpass)
+        format.html { redirect_to page_path("ftptutorial"), notice: 'User was successfully created.' }
+        format.json { render json: @user, status: :created, location: @user }
       else
         format.html { render action: "new" }
         format.json { render json: @user.errors, status: :unprocessable_entity }
@@ -75,6 +70,9 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
+        if(params[:user]["desired_ftp_pass"] != nil)
+          User.update_ftp_password(@user.nickname, params[:user]["desired_ftp_pass"])
+        end
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { head :no_content }
       else
@@ -88,8 +86,8 @@ class UsersController < ApplicationController
   # DELETE /users/1.json
   def destroy
     @user = User.find(params[:id])
+    User.delete_on_disk(@user.nickname)
     @user.destroy
-
     respond_to do |format|
       format.html { redirect_to users_url }
       format.json { head :no_content }

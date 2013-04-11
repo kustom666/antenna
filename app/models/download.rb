@@ -8,7 +8,7 @@ class Download < ActiveRecord::Base
   def self.begin(id)
   	download = find(id)
   	puts "\n Running command : wget -P /home/#{download.user.nickname}/videos/ #{download.url}\n"
-  	system("wget -P /home/#{download.user.nickname}/videos/ #{download.url}")
+  	system("wget -P /home/#{download.user.nickname}/videos/ #{download.url} -O #{download.name}")
   	download.update_attribute(:finished_at, Time.zone.now)
   end
 end
