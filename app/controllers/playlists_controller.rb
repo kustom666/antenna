@@ -92,7 +92,7 @@ class PlaylistsController < ApplicationController
       list << "file '/home/#{user.nickname}/videos/#{video.name}'\n"
     end
     File.open("/home/deployer/videolist#{user.nickname}", 'w+') {|f| f.write(list) }
-    File.open("/home/deployer/playlist#{user.nickname}.sh", 'w+') {|f| f.write("while true; do\nffmpeg -re -f concat -i /home/deployer/videolist#{user.nickname} -c copy -f flv #{provider.rtmp_url}#{emitter.live_key}\ndone") }
+    File.open("/home/deployer/playlist#{user.nickname}.sh", 'w+') {|f| f.write("while true; do\nffmpeg -re -f concat -i /home/deployer/videolist#{user.nickname} -v:b 1M -a:b 128k -bt 1M -c copy -f flv #{provider.rtmp_url}#{emitter.live_key}\ndone") }
 
     if @playlist.live
       redirect_to @playlist, notice: "The playlist is already live!"
