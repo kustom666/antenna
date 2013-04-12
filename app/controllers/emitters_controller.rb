@@ -29,7 +29,7 @@ class EmittersController < ApplicationController
   # GET /emitters/new.json
   def new
     @emitter = Emitter.new
-
+    @twitch_login_url = oauth_client.auth_code.authorize_url(redirect_uri: "http://localhost:3000/oauth")+"&scope=channel_read"
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @emitter }
@@ -45,6 +45,30 @@ class EmittersController < ApplicationController
   def playlist
     @emitter = Emitter.find(params[:id])
     @files = Dir.new("/home/#{@emitter.user}/videos")
+  end
+
+  def oauth
+    access_token = params[:code]
+    scope = params[:scope]
+    access = oauth_client.auth_code.get_token(access_token, redirect_uri: "http://localhost:3000/oauth")
+    resp = "https://api.twitch.tv/kraken/channel?oauth_token=#{access.token}"
+    output = open(resp).read
+    parsed_output = JSON.parse(output)
+    @emitter = Emitter.new
+    @emitter.user = current_user 
+    @emitter.provider_id = 1
+    @emitter.live_key = parsed_output["stream_key"]
+    @emitter.title = parsed_output["url"]
+    respond_to do |format|
+      if @emitter.save
+        format.html { redirect_to @emitter, notice: 'Emitter was successfully created.' }
+        format.json { render json: @emitter, status: :created, location: @emitter }
+      else
+        format.html { redirect_to new_emitter_path, notice: "An error prevented your emitter from being created" }
+        format.json { render json: @emitter.errors, status: :unprocessable_entity }
+      end
+    end
+
   end
 
   # POST /emitters

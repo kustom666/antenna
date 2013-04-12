@@ -54,15 +54,20 @@ GEM
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    faraday (0.8.4)
+      multipart-post (~> 1.1)
     high_voltage (1.2.2)
     highline (1.6.16)
     hike (1.2.1)
+    httpauth (0.2.0)
     i18n (0.6.1)
     journey (1.0.4)
     jquery-rails (2.2.1)
       railties (< 5.0, >= 3.0)
       thor (< 2.0, >= 0.14)
     json (1.7.7)
+    jwt (0.1.5)
+      multi_json (>= 1.0)
     kgio (2.8.0)
     mail (2.5.3)
       i18n (>= 0.4.0)
@@ -70,6 +75,8 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.22)
     multi_json (1.7.2)
+    multi_xml (0.5.3)
+    multipart-post (1.1.5)
     net-scp (1.1.0)
       net-ssh (>= 2.6.5)
     net-sftp (2.1.1)
@@ -78,6 +85,13 @@ GEM
     net-ssh-gateway (1.2.0)
       net-ssh (>= 2.6.5)
     newrelic_rpm (3.6.0.78)
+    oauth2 (0.9.1)
+      faraday (~> 0.8)
+      httpauth (~> 0.1)
+      jwt (~> 0.1.4)
+      multi_json (~> 1.0)
+      multi_xml (~> 0.5)
+      rack (~> 1.2)
     paperclip (3.4.1)
       activemodel (>= 3.0.0)
       activerecord (>= 3.0.0)
@@ -154,6 +168,7 @@ DEPENDENCIES
   high_voltage
   jquery-rails
   newrelic_rpm
+  oauth2
   paperclip
   pg
   queue_classic (>= 2.0.0rc14)

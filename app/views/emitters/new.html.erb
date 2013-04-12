@@ -1,5 +1,19 @@
 <h1>New emitter</h1>
 
-<%= render 'form' %>
+
+<div class="tabbable"> <!-- Only required for left/right tabs -->
+  <ul class="nav nav-tabs">
+    <li class="active"><a href="#tab1" data-toggle="tab">Twitch</a></li>
+    <li><a href="#tab2" data-toggle="tab">Manual</a></li>
+  </ul>
+  <div class="tab-content">
+    <div class="tab-pane active" id="tab1">
+      <%= link_to image_tag("connect_dark.png"), @twitch_login_url%>
+    </div>
+    <div class="tab-pane" id="tab2">
+      <%= render 'form' %>
+    </div>
+  </div>
+</div>
 
 <%= link_to 'Back', emitters_path, :class => "btn btn-primary"%>

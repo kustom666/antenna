@@ -14,4 +14,9 @@ class ApplicationController < ActionController::Base
   	@markdown = Redcarpet::Markdown.new(Redcarpet::Render::HTML, :autolink => true, :space_after_headers => true)
   end
   helper_method :mdrender
+
+  def oauth_client
+    @oauth_client = OAuth2::Client.new("89zsmep91o84s4c1uqux4vlq8ks7ch9", "kcv7ohn2t9z4ls8by9m1c2lxskekble", site: "https://api.twitch.tv/kraken/", authorize_url: "oauth2/authorize", token_url: "oauth2/token") 
+  end
+  helper_method :oauth_client
 end
