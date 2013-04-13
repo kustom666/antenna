@@ -1,1 +1,0 @@
-jQuery.noConflict(),function(t){t.fn.fixTextFilter=function(){return this.each(function(){this.style.removeAttribute("filter"),t(this).parents(".inner-wrap").parent().css("background-color")})}}(jQuery);
