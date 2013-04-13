@@ -1,0 +1,13 @@
+/**
+ * Autotab - jQuery plugin 1.1b
+ * http://www.lousyllama.com/sandbox/jquery-autotab
+ * 
+ * Copyright (c) 2008 Matthew Miller
+ * 
+ * Dual licensed under the MIT and GPL licenses:
+ *   http://www.opensource.org/licenses/mit-license.php
+ *   http://www.gnu.org/licenses/gpl.html
+ * 
+ * Revised: 2008-09-10 16:55:08
+ */
+(function(t){var e=function(e){var a=null,r=t("#"+e),n=t("input[name="+e+"]");return r.length?a=r:void 0!=n&&(a=n),a};t.fn.autotab_magic=function(e){for(var a=0;this.length>a;a++){var r=a+1,n=a-1;a>0&&this.length>r?t(this[a]).autotab({target:t(this[r]),previous:t(this[n])}):a>0?t(this[a]).autotab({previous:t(this[n])}):t(this[a]).autotab({target:t(this[r])}),(null!=e&&isNaN(e)&&e==t(this[a]).attr("id")||!isNaN(e)&&e==a)&&t(this[a]).focus()}return this},t.fn.autotab_filter=function(e){var a={format:"all",uppercase:!1,lowercase:!1,nospace:!1,pattern:null};"string"==typeof e||"function"==typeof e?a.format=e:t.extend(a,e);for(var r=0;this.length>r;r++)t(this[r]).bind("keyup",function(){var t=this.value;switch(a.format){case"text":var e=new RegExp("[0-9]+","g");t=t.replace(e,"");break;case"alpha":var e=new RegExp("[^a-zA-Z]+","g");t=t.replace(e,"");break;case"number":case"numeric":var e=new RegExp("[^0-9]+","g");t=t.replace(e,"");break;case"alphanumeric":var e=new RegExp("[^0-9a-zA-Z]+","g");t=t.replace(e,"");break;case"custom":var e=new RegExp(a.pattern,"g");t=t.replace(e,"");break;case"all":default:if("function"==typeof a.format)var t=a.format(t)}if(a.nospace){var e=new RegExp("[ ]+","g");t=t.replace(e,"")}a.uppercase&&(t=t.toUpperCase()),a.lowercase&&(t=t.toLowerCase()),t!=this.value&&(this.value=t)})},t.fn.autotab=function(a){var r={format:"all",maxlength:2147483647,uppercase:!1,lowercase:!1,nospace:!1,target:null,previous:null,pattern:null};t.extend(r,a),"string"==typeof r.target&&(r.target=e(r.target)),"string"==typeof r.previous&&(r.previous=e(r.previous));var n=t(this).attr("maxlength");return 2147483647==r.maxlength&&2147483647!=n?r.maxlength=n:r.maxlength>0?t(this).attr("maxlength",r.maxlength):r.target=null,"all"!=r.format&&t(this).autotab_filter(r),t(this).bind("keydown",function(t){8==t.which&&0==this.value.length&&r.previous&&r.previous.focus().val(r.previous.val())}).bind("keyup",function(e){var a=[8,9,16,17,18,19,20,27,33,34,35,36,37,38,39,40,45,46,144,145];if(8!=e.which){var n=t(this).val();-1==t.inArray(e.which,a)&&n.length==r.maxlength&&r.target&&r.target.focus()}})}})(jQuery);
