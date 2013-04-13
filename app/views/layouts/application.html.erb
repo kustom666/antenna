@@ -2,75 +2,131 @@
 <html>
 <head>
   <title>Antenna</title>
-  <%= stylesheet_link_tag    "bootstrap.min", :media => "all" %>
+  <%= stylesheet_link_tag    "main.css" %>
   <%= csrf_meta_tags %>
-  <style>
-  	.container-fluid{
-  		margin-top: 10px;
-  	}
-  </style>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
 </head>
 <body>
-	<div class="navbar navbar-inverse navbar-static-top">
-		<div class="navbar-inner">
-			<a class="brand" href="<%= root_path %>">Antenna</a>
-			<ul class="nav">
-			  <li><%= link_to "Alpha Testers", users_path%></li>
-			  <li><%= link_to "Supported livestreams", providers_path%></li>
-		  		<div class="btn-group">
-		  			<button class="btn btn-inverse dropdown-toggle" data-toggle="dropdown">
-		  				Your account
-		  				<span class="caret"></span>
-		  			</button>
-		  			<ul class="dropdown-menu">
-					  	<% if current_user %>
-							<li><%= link_to "Welcome #{current_user.nickname}", user_path(current_user)%></li>
-							<li class="divider"></li>
-							<% if current_user.emitter %>
-								<li><%= link_to "Your Emitter", emitter_path(current_user.emitter)%></li>
-								<li><%= link_to "Your playlists", playlists_path%></li>
-								<li><%= link_to "Your videos", videos_path%></li>
-							<%else%>
-								<li><%= link_to "Create your Emitter", new_emitter_path %></li>
-							<%end%>
-							<li><%= link_to "logout", logout_path %></li>
-						<%else%>
-							<li><%= link_to "register", register_path %></li>
-							<li><%= link_to "login", login_path %></li>
-						<%end%>
-					</ul>
-				</div>
-			</ul>
-		</div>
-	</div>
-	<div class="container-fluid">
-		<div class="row-fluid">
-			<div class="span2">
-				<div class="well well-large">
-					<!--Sidebar content-->
-					<% if current_user %>
-						<p>The Alpha test is now live!<br/>
-							You can start by uploading some FLV videos to the server via sFTP, then create <%= link_to "Your Emitter", new_emitter_path %>.
+	<!-- Top navigation bar -->
+<div id="topNav">
+    <div class="fixed">
+        <div class="wrapper">
+            <% if current_user %>
+                <div class="welcome"><%= image_tag "userPic.png"%><span>Welcome <%= link_to current_user.nickname, user_path(current_user)%></span></div>
+                <div class="userNav">
+                    <ul>
+                        <li><%= link_to image_tag("icons/topnav/profile.png") + content_tag(:span, "Account"), edit_user_path(current_user)%></li>
+                        <li><%= link_to image_tag("icons/topnav/tasks.png") + content_tag(:span, "Emitter"), edit_emitter_path(current_user.emitter)%></li>
+                        <li><%= link_to image_tag("icons/topnav/logout.png") + content_tag(:span, "Logout"), "/logout" %></li></li>
+                    </ul>
+                </div>
+            <%else%>
+                <div class="userNav">
+                    <ul>
+                        <li><%= link_to image_tag("icons/topnav/register.png") + content_tag(:span, "Register"), new_user_path%></li>
+                        <li><%= link_to image_tag("icons/topnav/logout.png") + content_tag(:span, "Login"), "/login" %></li></li>
+                    </ul>
+                </div>
+            <%end%>
+        </div>
+    </div>
+</div>
+<!-- Header -->
+<div id="header" class="wrapper">
+   <br/>
+</div>
 
-						</p>
-					<%else%>
-						<p>Not yet a member? Become one! Joining is as easy as registering.<br/>
-						For the duration of the alpha, the service is free of charge, so don't wait more and <%= link_to "register", register_path %> or <%= link_to "login", login_path %>!</p>
-					<%end%>
-				</div>
-			</div>
-			<div class="span10">
-				<!--Body content-->
-				<div class="well well-large">
-					<%= yield %>
-				</div>
-			</div>
+	<div class="wrapper">
+        <% if current_user %>
+            <div class="leftNav">
+                <ul id="menu">
+                    <li class="dash"><%= link_to content_tag(:span, "Dashboard"), emitter_path(current_user.emitter) %></li>
+                    <li class="gallery"><a href="#" title="" class="exp"><span>Videos</span></a>
+                        <ul class="sub">
+                            <li><%= link_to "List", videos_path %></li>
+                            <li class="last"><%= link_to "Add one", new_video_path  %></li>
+                        </ul>
+                    </li>
+                    <li class="pic"><a href="#" title="" class="exp"><span>Playlists</span></a>
+                        <ul class="sub">
+                            <li><%= link_to "List", playlists_path %></li>
+                            <% current_user.playlists.each do |playlist| %>
+                                <li><%= link_to playlist.title, playlist_path(playlist) %></li>
+                            <%end%>
+                            <li class="last"><%= link_to "Create one", new_playlist_path  %></li>
+                        </ul>
+                    </li>
+                    <li class="gallery"><a href="#" title="" class="exp"><span>Downloads</span></a>
+                        <ul class="sub">
+                            <li><%= link_to "List", downloads_path %></li>
+                            <li class="last"><%= link_to "Download a video", new_download_path  %></li>
+                        </ul>
+                    </li>
+                    <li class="files"><%= link_to content_tag(:span, "File Manager (soon)"), "#"%></li>
+                </ul>
+            </div>
+        <%end%>
+		<div class="content">
+            <div class="title">
+                <h5>Antenna <%= yield :page_title %></h5>
+            </div>
+			<%= yield %>
 		</div>
 	</div>
-	<footer>
-		All the work is the property of Paul Forti
-	</footer>
-  	<%= javascript_include_tag "application" %>
-    <%= javascript_include_tag "bootstrap.min" %>
+	<div id="footer">
+        <div class="wrapper">
+            <span>This website is the work of Paul Forti, all rights reserved</span>
+        </div>
+    </div>
+
+     <%= javascript_include_tag "js/jquery-1.4.4.js" %>
+ 
+     <%= javascript_include_tag src="js/spinner/jquery.mousewheel.js"%>
+     <%= javascript_include_tag src="js/spinner/ui.spinner.js"%>
+     
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+     
+    <%= javascript_include_tag "fileManager/elfinder.min.js"%>
+     
+    <%= javascript_include_tag "wysiwyg/jquery.wysiwyg.js"%>
+    <%= javascript_include_tag "wysiwyg/wysiwyg.image.js"%>
+    <%= javascript_include_tag "wysiwyg/wysiwyg.link.js"%>
+    <%= javascript_include_tag "wysiwyg/wysiwyg.table.js"%>
+     
+    <%= javascript_include_tag "flot/jquery.flot.js"%>
+    <%= javascript_include_tag "flot/jquery.flot.pie.js"%>
+    <%= javascript_include_tag "flot/excanvas.min.js"%>
+     
+    <%= javascript_include_tag "dataTables/jquery.dataTables.js"%>
+    <%= javascript_include_tag "dataTables/colResizable.min.js"%>
+     
+    <%= javascript_include_tag "forms/forms.js"%>
+    <%= javascript_include_tag "forms/autogrowtextarea.js"%>
+    <%= javascript_include_tag "forms/autotab.js"%>
+    <%= javascript_include_tag "forms/jquery.validationEngine-en.js"%>
+    <%= javascript_include_tag "forms/jquery.validationEngine.js"%>
+     
+    <%= javascript_include_tag "colorPicker/colorpicker.js"%>
+     
+    <%= javascript_include_tag "uploader/plupload.js"%>
+    <%= javascript_include_tag "uploader/plupload.html5.js"%>
+    <%= javascript_include_tag "uploader/plupload.html4.js"%>
+    <%= javascript_include_tag "uploader/jquery.plupload.queue.js"%>
+     
+    <%= javascript_include_tag "ui/progress.js"%>
+    <%= javascript_include_tag "ui/jquery.jgrowl.js"%>
+    <%= javascript_include_tag "ui/jquery.tipsy.js"%>
+    <%= javascript_include_tag "ui/jquery.alerts.js"%>
+     
+    <%= javascript_include_tag "jBreadCrumb.1.1.js"%>
+    <%= javascript_include_tag "cal.min.js"%>
+    <%= javascript_include_tag "jquery.collapsible.min.js"%>
+    <%= javascript_include_tag "jquery.ToTop.js"%>
+    <%= javascript_include_tag "jquery.listnav.js"%>
+    <%= javascript_include_tag "jquery.sourcerer.js"%>
+     
+    <%= javascript_include_tag "custom.js"%>
+   
 </body>
 </html>

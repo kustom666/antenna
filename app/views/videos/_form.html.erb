@@ -1,12 +1,12 @@
-<%= bootstrap_form_for(@video, html: { class: 'form-horizontal' }, help: :block) do |f| %>
-  <% if @video.errors.any? %>
-    <%= f.alert_message "Please fix the errors below." %>
-  <% end %>
+<%= brain_form_for(@video) do |f| %>
+
+	<% if @video.errors.any? %>
+		<%= f.alert_message "Please fix the errors below." %>
+	<% end %>
 
     <%= f.select(:name, @files) %>
     <%= f.collection_select(:playlist_id, Playlist.where(:user_id => current_user), :id, :title)%>
     <%= f.number_field :number %>
-  <%= f.actions do %>
-    <%= f.primary "Add a video"%>
-  <% end %>
+    <%= f.submit "Add a video"%>
+
 <% end %>

@@ -1,19 +1,32 @@
-<h1>Account</h1>
-
+<%content_for :page_title do%>
+  Identification
+<%end%>
 
 <div class="page" id="sessions_new">
   <% if flash[:notice] %>
     <p class="notice"><%= flash[:notice] %></p>
   <% end %>
-  <%= form_tag sessions_path do %>
-    <div class="field">
-      <%= label_tag :email %><br />
-      <%= text_field_tag :email, params[:email] %>
+  
+</div>
+
+<!-- Login form area -->
+<div class="loginWrapper">
+    <div class="loginPanel">
+        <div class="head"><h5 class="iUser">Login</h5></div>
+        <%= form_tag(sessions_path, { :class => 'mainForm' }) do %>
+          <fieldset>
+            <div class="loginRow">
+              <%= label_tag :email %>
+              <div class="loginInput"> <%= text_field_tag :email, params[:email] %> </div>
+            </div>
+            <div class="loginRow">
+              <%= label_tag :password %>
+              <div class="loginInput"><%= password_field_tag :password %> </div>
+            </div>
+            <div class="loginRow">
+              <div class="submitForm"><%= submit_tag "Log In", :class => "basicBtn" %></div>
+            </div>
+          </fieldset>
+        <% end %>
     </div>
-    <div class="field">
-      <%= label_tag :password %><br />
-      <%= password_field_tag :password %>
-    </div>
-    <div class="actions"><%= submit_tag "Log In" %></div>
-  <% end %>
 </div>

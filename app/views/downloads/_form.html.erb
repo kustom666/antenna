@@ -1,11 +1,9 @@
-<%= bootstrap_form_for(@download) do |f| %>
+<%= brain_form_for(@download) do |f| %>
   <% if @download.errors.any? %>
     <%= f.alert_message "Please fix the errors below." %>
   <% end %>
 
     <%= f.text_field :url %>
     <%= f.text_field :name %>
-  <%= f.actions do%>
-    <%= f.primary "Download this file" %>
-  <%end%>
+    <%= f.submit "Download this file" %>
 <% end %>

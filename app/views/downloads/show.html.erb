@@ -1,18 +1,28 @@
-<% if notice %><div class="alert alert-info"><%= notice %></div><% end %><%= notice %></p>
+<fieldset>
+	<div class="widget">
+	    <div class="head">
+	      <h5 class="iCoverflow">Your Download</h5>
+	    </div>
+		<% if notice %><div class="nNote nInformation hideit"><p><%= notice %></p></div><% end %><%= notice %></p>
+		<div class="body">
+			<p>
+			  <b>Url:</b>
+			  <%= @download.url %>
+			</p>
 
-<p>
-  <b>Url:</b>
-  <%= @download.url %>
-</p>
+			<p>
+			  <b>Name:</b>
+			  <%= @download.name %>
+			</p>
 
-<p>
-  <b>Name:</b>
-  <%= @download.name %>
-</p>
+			<p>
+			  <b>User:</b>
+			  <%= @download.user.nickname %>
+			</p>
 
-<p>
-  <b>User:</b>
-  <%= @download.user.nickname %>
-</p>
-
-<%= link_to 'Back', downloads_path , :class => "btn btn-primary"%>
+			<div class="submitForm">
+				<%= link_to 'Back', downloads_path , :class => "btn btn-primary"%>
+			</div>
+		</div>
+	</div>
+</fieldset>

@@ -1,27 +1,26 @@
-<h1>Registered Alpha testers!</h1>
+<%content_for :page_title do%>
+  The registered alpha testers
+<%end%>
 
-<table>
-  <tr>
-    <th>Nickname</th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @users.each do |user| %>
-  <tr>
-    <td><%= user.nickname %></td>
-    <% if current_user && (current_user == user || current_user.admin)%>
-      <td><%= link_to 'Show', user, :class => "btn btn-primary" %></td>
-      <td><%= link_to 'Edit', edit_user_path(user), :class => "btn btn-primary" %></td>
-    <%end%>
-    <% if current_user && current_user.admin%>
-      <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %></td>
-    <%end%>
-    
-  </tr>
-<% end %>
-</table>
+<fieldset>
+	<div class="widget">
+        <div class="head">
+        <h5 class="iCoverflow">Users</h5>
+	</div>
+	<table class="tableStatic">
+		<thead>
+			<tr>
+				<td width="100%">Nickname</td>
+			</tr>
+		</thead>
+		<tbody>
+			<% @users.each do |user| %>
+			  <tr>
+			    	<td><%= user.nickname %><td>
+			  </tr>
+			<% end %>
+		</tbody>
+	</table>
+</fieldset>
 
 <br />
-
-<%= link_to 'New User', new_user_path , :class => "btn btn-primary"%>

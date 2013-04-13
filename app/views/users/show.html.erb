@@ -1,15 +1,23 @@
-<% if notice %><div class="alert alert-info"><%= notice %></div><% end %><%= notice %></p>
+<%content_for :page_title do%>
+  Account
+<%end%>
+<fieldset>
+	<div class="widget">
+        <div class="head">
+        <h5 class="iCoverflow">Your account</h5>
+	</div>
+<% if notice %><div class="nNote nInformation hideit"><p><%= notice %></p></div><% end %>
 
-<p>
-  <b>Nickname:</b>
-  <%= @user.nickname %>
-</p>
+<div class="rowElem noborder">
+	<b>Nickname:</b>
+	<div class="formRight"><%= @user.nickname %></div>
+</div>
 
-<p>
-  <b>Email:</b>
-  <%= @user.email %>
-</p>
-
-
-<%= link_to 'Edit', edit_user_path(@user) , :class => "btn btn-primary"%> |
-<%= link_to 'Back', users_path, :class => "btn btn-primary" %>
+<div class="rowElem noborder">
+	<b>Email:</b>
+	<div class="formRight"><%= @user.email %></div>
+</div>
+<div class="submitForm">
+	<%= link_to "Edit your account", edit_user_path(current_user) %>
+</div>
+</fieldset>

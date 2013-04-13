@@ -1,6 +1,14 @@
-<h1>Editing video</h1>
+<%content_for :page_title do%>
+  - Your videos
+<%end%>
+<fieldset>
+	<div class="widget">
+        <div class="head">
+        	<h5 class="iCoverflow">Edit the video</h5>
+		</div>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @video , :class => "btn btn-primary"%> |
-<%= link_to 'Back', videos_path , :class => "btn btn-primary"%>
+	<%= render 'form' %>
+	<%= link_to 'Show', @video %> |
+	<%= link_to 'Back', videos_path %>
+</div>
+</fieldset>

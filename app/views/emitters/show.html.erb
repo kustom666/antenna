@@ -1,78 +1,110 @@
-<% if notice %><div class="alert alert-info"><%= notice %></div><% end %>
+<%content_for :page_title do%>
+  Your emitter
+<%end%>
 
-<p>
-  <b>Title:</b>
-  <%= @emitter.title %>
-</p>
+<fieldset>
+  <div class="widget">
+    <div class="head">
+      <h5 class="iCoverflow">Emitter's properties</h5>
+    </div>
+    <div class="body">
+      <% if notice %><div class="alert alert-info"><%= notice %></div><% end %>
 
-<p>
-  <b>Provider:</b>
-  <%= @emitter.provider.name %>
-</p>
-<br/>
-<h3>All your playlists</h3>
-<table class="table">
-  <tr>
-    <th>Title</th>
-    <th>Description</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+      <p>
+        <b>Title:</b>
+        <%= @emitter.title %>
+      </p>
 
-<% @playlists.each do |playlist| %>
-  <tr>
-    <td><%= playlist.title %></td>
-    <td><%= playlist.description %></td>
-    <td><%= link_to 'Show', playlist , :class => "btn btn-primary"%></td>
-    <td><%= link_to 'Edit', edit_playlist_path(playlist) , :class => "btn btn-primary"%></td>
-    <td><%= link_to 'Destroy', playlist, method: :delete, data: { confirm: 'Are you sure?' } , :class => "btn btn-danger"%></td>
-  </tr>
-<% end %>
-</table>
-<br/>
-<h3>All your videos</h3>
-<table class="table">
-  <tr>
-    <th>Name</th>
-    <th>Playlist</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+      <p>
+        <b>Provider:</b>
+        <%= @emitter.provider.name %>
+      </p>
+      <br/>
+    </div>
+  </div>
+</fieldset>
 
-<% @videos.each do |video| %>
-    <tr>
-      <td><%= video.name %></td>
-      <td><%= video.playlist.title %></td>
-      <td><%= link_to 'Show', video , :class => "btn btn-primary"%></td>
-      <td><%= link_to 'Edit', edit_video_path(video) , :class => "btn btn-primary"%></td>
-      <td><%= link_to 'Destroy', video, method: :delete, data: { confirm: 'Are you sure?' } , :class => "btn btn-danger"%></td>
-    </tr>
-<% end %>
-</table>
-<br/>
-<table class="table">
-  <tr>
-    <th>Url</th>
-    <th>Name</th>
-    <th>Finished at</th>
-    <th></th>
-    <th></th>
-  </tr>
+<fieldset>
+  <div class="widget">
+    <div class="head">
+      <h5 class="iCoverflow">All your playlists</h5>
+    </div>
 
-<% @downloads.each do |download| %>
-  <tr>
-    <td><%= download.url %></td>
-    <td><%= download.name %></td>
-    <td><%= download.finished_at %></td>
-    <td><%= link_to 'Show', download , :class => "btn btn-primary"%></td>
-    <td><%= link_to 'Destroy', download, method: :delete, data: { confirm: 'Are you sure?' } , :class => "btn btn-danger"%></td>
-  </tr>
-<% end %>
-</table>
-<br/>
-<%= link_to "Create a playlist", new_playlist_path , :class =>"btn btn-success"%> <%= link_to "Download a video", new_download_path , :class =>"btn btn-success"%> <%= link_to "Add a video to a playlist", new_video_path , :class =>"btn btn-success"%> <%= link_to 'Edit your emitter', edit_emitter_path(@emitter), :class => "btn btn-primary" %>
-<br/>
+    <table class="tableStatic" width="100%">
+      <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+
+    <% @playlists.each do |playlist| %>
+      <tr>
+        <td><%= playlist.title %></td>
+        <td><%= playlist.description %></td>
+        <td><%= link_to 'Show', playlist , :class => "btn btn-primary"%></td>
+        <td><%= link_to 'Edit', edit_playlist_path(playlist) , :class => "btn btn-primary"%></td>
+        <td><%= link_to 'Destroy', playlist, method: :delete, data: { confirm: 'Are you sure?' } , :class => "btn btn-danger"%></td>
+      </tr>
+    <% end %>
+    </table>
+  </div>
+</fieldset>
+
+
+<fieldset>
+  <div class="widget">
+    <div class="head">
+      <h5 class="iCoverflow">All your videos</h5>
+    </div>
+    <table class="tableStatic" width="100%">
+      <tr>
+        <th>Name</th>
+        <th>Playlist</th>
+        <th></th>
+        <th></th>
+        <th></th>
+      </tr>
+
+    <% @videos.each do |video| %>
+        <tr>
+          <td><%= video.name %></td>
+          <td><%= video.playlist.title %></td>
+          <td><%= link_to 'Show', video , :class => "btn btn-primary"%></td>
+          <td><%= link_to 'Edit', edit_video_path(video) , :class => "btn btn-primary"%></td>
+          <td><%= link_to 'Destroy', video, method: :delete, data: { confirm: 'Are you sure?' } , :class => "btn btn-danger"%></td>
+        </tr>
+    <% end %>
+    </table>
+  </div>
+</fieldset>
+<fieldset>
+  <div class="widget">
+    <div class="head">
+      <h5 class="iCoverflow">All your downloads</h5>
+    </div>
+    <table class="tableStatic" width="100%">
+      <tr>
+        <th>Url</th>
+        <th>Name</th>
+        <th>Finished at</th>
+        <th></th>
+        <th></th>
+      </tr>
+
+    <% @downloads.each do |download| %>
+      <tr>
+        <td><%= download.url %></td>
+        <td><%= download.name %></td>
+        <td><%= download.finished_at %></td>
+        <td><%= link_to 'Show', download , :class => "btn btn-primary"%></td>
+        <td><%= link_to 'Destroy', download, method: :delete, data: { confirm: 'Are you sure?' } , :class => "btn btn-danger"%></td>
+      </tr>
+    <% end %>
+    </table>
+    <br/>
+  </div>
+</fieldset>
 
 

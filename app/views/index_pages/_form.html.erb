@@ -1,4 +1,4 @@
-<%= bootstrap_form_for(@index_page, html: { class: 'form-horizontal' }, help: :block) do |f| %>
+<%= form_for(@index_page) do |f| %>
   <% if @index_page.errors.any? %>
     <%= f.alert_message "Please fix the errors below." %>
   <% end %>
@@ -10,6 +10,6 @@
     <%= f.text_area :body %>
   </div>
   <div class="actions">
-    <%= f.primary "Create this index page"%>
+    <%= f.submit "Create this index page"%>
   </div>
 <% end %>

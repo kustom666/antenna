@@ -1,4 +1,4 @@
-<% if notice %><div class="alert alert-info"><%= notice %></div><% end %><%= notice %></p>
+<% if notice %><div class="nNote nInformation hideit"><p><%= notice %></p></div><% end %>
 
 <p>
   <b>Title:</b>
@@ -10,6 +10,7 @@
   <%= @index_page.body %>
 </p>
 
-
-<%= link_to 'Edit', edit_index_page_path(@index_page) %> |
-<%= link_to 'Back', index_pages_path %>
+<div class="submitForm">
+	<%= link_to 'Edit', edit_index_page_path(@index_page) %> |
+	<%= link_to 'Back', index_pages_path %>
+</div>

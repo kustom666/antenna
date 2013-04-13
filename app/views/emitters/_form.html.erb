@@ -1,4 +1,9 @@
-<%= bootstrap_form_for(@emitter, html: { class: 'form-horizontal' }, help: :block) do |f| %>
+<%= brain_form_for(@emitter) do |f| %>
+<fieldset>
+  <div class="widget">  
+  	<div class="head">
+  		<h5 class="iCoverflow">New emitter</h5>
+  	</div>
   <% if @emitter.errors.any? %>
     <%= f.alert_message "Please fix the errors below." %>
   <% end %>
@@ -6,7 +11,7 @@
     <%= f.text_field :title %>
     <%= f.collection_select(:provider_id, Provider.all, :id, :name)%>
     <%= f.text_field :live_key %>
-  <%= f.actions do%>
-    <%= f.primary "Create this emitter"%>
-  <% end %>
+    <%= f.submit "Create this emitter"%>
+    </div>
+</fieldset>
 <% end %>

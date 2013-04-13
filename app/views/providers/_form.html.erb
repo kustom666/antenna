@@ -1,11 +1,9 @@
-<%= bootstrap_form_for(@provider, html: { class: 'form-horizontal' }, help: :block) do |f| %>
+<%= form_for(@provider) do |f| %>
   <% if @provider.errors.any? %>
     <%= f.alert_message "Please fix the errors below." %>
   <% end %>
   <%= f.text_field :name %>
   <%= f.text_field :rtmp_url %>
   <%= f.text_area :description %>
-  <%= f.actions do %>
-    <%= f.primary "Add your emitter"%>
-  <%end%>
+    <%= f.submit "Add your emitter"%>
 <% end %>

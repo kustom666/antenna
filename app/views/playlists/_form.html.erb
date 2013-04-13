@@ -1,15 +1,5 @@
-<%= bootstrap_form_for(@playlist, html: { class: 'form-horizontal' }, help: :block) do |f| %>
-  <% if @playlist.errors.any? %>
-    <%= f.alert_message "Please fix the errors below." %>
-  <% end %>
-
-  <div class="field">
+<%= brain_form_for(@playlist) do |f| %>
     <%= f.text_field :title %>
-  </div>
-  <div class="field">
     <%= f.text_area :description %>
-  </div>
-  <div class="actions">
-    <%= f.primary "Add your playlist"%>
-  </div>
+    <%= f.submit "Add your playlist"%>
 <% end %>

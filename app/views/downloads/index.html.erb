@@ -1,25 +1,34 @@
-<h1>Listing current downloads</h1>
+<%content_for :page_title do%>
+  Current downloads
+<%end%>
 
-<table class="table">
-  <tr>
-    <th>Url</th>
-    <th>Name</th>
-    <th>Finished at</th>
-    <th></th>
-    <th></th>
-  </tr>
+<fieldset>
+  <div class="widget">
+    <div class="head">
+      <h5 class="iCoverflow">Current downloads</h5>
+    </div>
+    <table class="tableStatic" width="100%">
+      <tr>
+        <th>Url</th>
+        <th>Name</th>
+        <th>Finished at</th>
+        <th></th>
+        <th></th>
+      </tr>
 
-<% @downloads.each do |download| %>
-  <tr>
-    <td><%= download.url %></td>
-    <td><%= download.name %></td>
-    <td><%= download.finished_at %></td>
-    <td><%= link_to 'Show', download , :class => "btn btn-primary"%></td>
-    <td><%= link_to 'Destroy', download, method: :delete, data: { confirm: 'Are you sure?' } , :class => "btn btn-danger"%></td>
-  </tr>
-<% end %>
-</table>
+    <% @downloads.each do |download| %>
+      <tr>
+        <td><%= download.url %></td>
+        <td><%= download.name %></td>
+        <td><%= download.finished_at %></td>
+        <td><%= link_to 'Show', download , :class => "btn btn-primary"%></td>
+        <td><%= link_to 'Destroy', download, method: :delete, data: { confirm: 'Are you sure?' } , :class => "btn btn-danger"%></td>
+      </tr>
+    <% end %>
+    </table>
 
-<br />
+    <br />
 
-<%= link_to 'New Download', new_download_path %>
+    <%= link_to 'New Download', new_download_path %>
+  </div>
+</fieldset>

@@ -1,5 +1,14 @@
-<h1>New video</h1>
+<%content_for :page_title do%>
+  - Your videos
+<%end%>
 
-<%= render 'form' %>
+<fieldset>
+  <div class="widget">  
+  	<div class="head">
+  		<h5 class="iCoverflow">New video</h5>
+  	</div>
+	<%= render 'form' %>
+	</div>
+</fieldset>
 
 <%= link_to 'Back', videos_path, :class => "btn btn-primary" %>

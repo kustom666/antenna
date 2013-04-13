@@ -1,4 +1,4 @@
-<% if notice %><div class="alert alert-info"><%= notice %></div><% end %><%= notice %></p>
+<% if notice %><div class="nNote nInformation hideit"><p><%= notice %></p></div><% end %>
 
 <p>
   <b>Title:</b>
@@ -25,6 +25,7 @@
   <%= image_tag @article.image.url %>
 </p>
 
-
-<%= link_to 'Edit', edit_article_path(@article) %> |
-<%= link_to 'Back', articles_path %>
+<div class="submitForm">
+  <%= link_to 'Edit', edit_article_path(@article) %> |
+  <%= link_to 'Back', articles_path %>
+</div>

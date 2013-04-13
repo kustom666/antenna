@@ -1,25 +1,31 @@
-<h1>Your playlists</h1>
+<fieldset>
+  <div class="widget">
+      <div class="head">
+        <h5 class="iCoverflow">Emitter's properties</h5>
+      </div>
 
-<table class="table">
-  <tr>
-    <th>Title</th>
-    <th>User</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+      <table class="tableStatic" width="100%">
+        <tr>
+          <th>Title</th>
+          <th>User</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
 
-<% @playlists.each do |playlist| %>
-  <tr>
-    <td><%= playlist.title %></td>
-    <td><%= playlist.description %></td>
-    <td><%= link_to 'Show', playlist , :class => "btn btn-primary"%></td>
-    <td><%= link_to 'Edit', edit_playlist_path(playlist) , :class => "btn btn-primary"%></td>
-    <td><%= link_to 'Destroy', playlist, method: :delete, data: { confirm: 'Are you sure?' } , :class => "btn btn-danger"%></td>
-  </tr>
-<% end %>
-</table>
+      <% @playlists.each do |playlist| %>
+        <tr>
+          <td><%= playlist.title %></td>
+          <td><%= playlist.description %></td>
+          <td><%= link_to 'Show', playlist , :class => "btn btn-primary"%></td>
+          <td><%= link_to 'Edit', edit_playlist_path(playlist) , :class => "btn btn-primary"%></td>
+          <td><%= link_to 'Destroy', playlist, method: :delete, data: { confirm: 'Are you sure?' } , :class => "btn btn-danger"%></td>
+        </tr>
+      <% end %>
+      </table>
 
-<br />
+      <br />
 
-<%= link_to 'New Playlist', new_playlist_path %>
+      <%= link_to 'New Playlist', new_playlist_path %>
+  </div>
+</fieldset>

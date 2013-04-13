@@ -1,6 +1,12 @@
-<h1>Editing user</h1>
+<%content_for :page_title do%>
+  Account
+<%end%>
+<fieldset>
+	<div class="widget">
+        <div class="head">
+        	<h5 class="iCoverflow">Edit your account</h5>
+		</div>
+		<%= render 'form' %>
+	</div>
+</fieldset>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @user , :class => "btn btn-primary"%> |
-<%= link_to 'Back', users_path , :class => "btn btn-primary"%>

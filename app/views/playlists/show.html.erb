@@ -1,39 +1,54 @@
-<% if notice %><div class="alert alert-info"><%= notice %></div><% end %><%= notice %></p>
+<fieldset>
+	<div class="widget">
+	    <div class="head">
+	      <h5 class="iCoverflow">Your playlist</h5>
+	    </div>
+		<% if notice %><div class="nNote nInformation hideit"><p><%= notice %></p></div><% end %>
+		<div class="body">
+			<p>
+			  <b>Title:</b>
+			  <%= @playlist.title %>
+			</p>
 
-<p>
-  <b>Title:</b>
-  <%= @playlist.title %>
-</p>
+			<p>
+			  <b>Description:</b>
+			  <%= @playlist.description %>
+			</p>
+		</div>
+	</div>
+</fieldset>
+<fieldset>
+	<div class="widget">
+	    <div class="head">
+	      <h5 class="iCoverflow">Playlist's videos</h5>
+	    </div>
+		<table class="tableStatic" width="100%">
+			<tr>
+				<th>Video's name</th>
+				<th>Edit the video</th>
+				<th>Delete the video</th>
+			</tr>
+			<% @playlist.videos.each do |video| %>
+			<tr>
+				<td><%= link_to video.name, video_path(video) %></td>
+				<td><%= link_to "Edit", edit_video_path(video), :class => "btn btn-primary"%></td>
+				<td><%= link_to "Delete", video , method: :delete , :class => "btn btn-primary"%></td>
+			</tr>
+			<%end%>
+		</table>
 
-<p>
-  <b>Description:</b>
-  <%= @playlist.description %>
-</p>
-
-<p>
-  <b>Videos:</b>
-	<table class="table">
-		<tr>
-			<th>Video's name</th>
-			<th>Edit the video</th>
-			<th>Delete the video</th>
-		</tr>
-		<% @playlist.videos.each do |video| %>
-		<tr>
-			<td><%= link_to video.name, video_path(video) %></td>
-			<td><%= link_to "Edit", edit_video_path(video), :class => "btn btn-primary"%></td>
-			<td><%= link_to "Delete", video , method: :delete , :class => "btn btn-primary"%></td>
-		</tr>
-		<%end%>
-	</table>
-</p>
-<p>
-	You should <%= link_to "add some videos", new_video_path , :class => "btn btn-primary"%>
-</p>
-<% if @playlist.live %>
-<%= link_to "Stop the live", stop_live_playlist_path(@playlist) , :class => "btn btn-danger"%>
-<% else %>
-<%= link_to "Start the live", start_live_playlist_path(@playlist) , :class => "btn btn-success"%>
-<% end %>
-<%= link_to 'Edit', edit_playlist_path(@playlist) , :class => "btn btn-primary"%> |
-<%= link_to 'Back', playlists_path , :class => "btn btn-primary"%>
+		<p>
+			You should 
+		</p>
+		<div class="submitForm">
+			<% if @playlist.live %>
+			<%= link_to "Stop the live", stop_live_playlist_path(@playlist) , :class => "btn btn-danger"%>
+			<% else %>
+			<%= link_to "Start the live", start_live_playlist_path(@playlist) , :class => "btn btn-success"%>
+			<% end %>
+			<%= link_to "add some videos", new_video_path , :class => "btn btn-primary"%>
+			<%= link_to 'Edit', edit_playlist_path(@playlist) , :class => "btn btn-primary"%>
+			<%= link_to 'Back', playlists_path , :class => "btn btn-primary"%>
+		</div>
+	</div>
+</placeholder>

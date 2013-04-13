@@ -1,10 +1,18 @@
-<h1>The livestream providers we support</h1>
+<%content_for :page_title do%>
+	The providers we support
+<%end%>
 
 <% @providers.each do |provider| %>
-  <div class="well well-large">
-    <h1><%=provider.name%></h1>
-    <%= mdrender.render(provider.description).html_safe%>
-  </div>
+	<fieldset>
+		<div class="widget">
+      		<div class="head">
+		  		<h5 class="iCoverflow"><%= provider.name%></h5>
+		  	</div>
+		  	<div class="rowElem noborder">
+		    	<%= mdrender.render(provider.description).html_safe%>
+    		</div>
+    	</div>
+    </fieldset>
 <% end %>
 
 <br />

@@ -1,22 +1,18 @@
-<%= bootstrap_form_for(@user, html: { class: 'form-horizontal' }, help: :block) do |f| %>
-  <% if @user.errors.any? %>
-    <%= f.alert_message "Please fix the errors below." %>
-  <% end %>
-
-    <%= f.text_field :nickname %>
-    <%= f.text_field :email%>
-    <%= f.password_field :password %>
-    <%= f.password_field :password_confirmation %>
-    <%= f.password_field :desired_ftp_pass %>
-
-  <% if current_user && current_user.admin %>
-    <%= f.control_group :type, label: { text: 'Account type' } do %>
-      <%= f.check_box :admin, label: 'Admin' %>
-      <%= f.check_box :admin, label: 'Paying' %>
+<%= brain_form_for(@user, builder: BrainFormBuilder) do |f| %>
+    <% if @user.errors.any? %>
+      <%= f.alert %>
     <% end %>
-  <%end%>
 
-  <%= f.actions do %>
-    <%= f.primary "Create your account"%>
-  <%end%>
+      <%= f.text_field :nickname %>
+      <%= f.text_field :email%>
+      <%= f.password_field :password %>
+      <%= f.password_field :password_confirmation %>
+      <%= f.password_field :desired_ftp_pass %>
+
+    <% if current_user && current_user.admin %>
+        <%= f.check_box :admin %>
+        <%= f.check_box :paying %>
+    <%end%>
+
+    <%= f.submit "Create your account"%>
 <% end %>

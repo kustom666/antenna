@@ -1,4 +1,13 @@
-<% if notice %><div class="alert alert-info"><%= notice %></div><% end %><%= notice %></p>
+<%content_for :page_title do%>
+  - Your videos
+<%end%>
+
+<fieldset>
+  <div class="widget">  
+  	<div class="head">
+  		<h5 class="iCoverflow">Video</h5>
+  	</div>
+<% if notice %><div class="nNote nInformation hideit"><p><%= notice %></p></div><% end %>
 
 <p>
   <b>Name:</b>
@@ -8,3 +17,5 @@
 
 <%= link_to 'Edit', edit_video_path(@video), :class => "btn btn-primary" %> |
 <%= link_to 'Back', videos_path, :class => "btn btn-primary" %>
+</div>
+</fieldset>

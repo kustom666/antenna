@@ -1,4 +1,4 @@
-<%= bootstrap_form_for(@article, html: { class: 'form-horizontal' }, help: :block) do |f| %>
+<%= form_for(@article) do |f| %>
   <% if @article.errors.any? %>
     <%= f.alert_message "Please fix the errors below." %>
   <% end %>
@@ -19,6 +19,6 @@
     <%= f.file_field :image %>
   </div>
   <div class="actions">
-    <%= f.primary "Create the article"%>
+    <%= f.submit "Create the article"%>
   </div>
 <% end %>

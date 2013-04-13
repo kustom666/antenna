@@ -1,6 +1,11 @@
-<h1>Editing emitter</h1>
+<fieldset>
+	<div class="widget">
+	    <div class="head">
+	      <h5 class="iCoverflow">Emitter's properties</h5>
+	    </div>
+		<%= render 'form' %>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @emitter , :class => "btn btn-primary"%> |
-<%= link_to 'Back', emitters_path , :class => "btn btn-primary"%>
+		<%= link_to 'Show', @emitter , :class => "btn btn-primary"%> |
+		<%= link_to 'Back', emitters_path , :class => "btn btn-primary"%>
+	</div>
+</fieldset>

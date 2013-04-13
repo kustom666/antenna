@@ -68,11 +68,13 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
 
+    if(!params[:user]["desired_ftp_pass"].empty?)
+      User.update_ftp_password(@user.nickname, params[:user]["desired_ftp_pass"])
+    end
+    params[:user].delete :desired_ftp_pass
     respond_to do |format|
       if @user.update_attributes(params[:user])
-        if(params[:user]["desired_ftp_pass"] != nil)
-          User.update_ftp_password(@user.nickname, params[:user]["desired_ftp_pass"])
-        end
+
         format.html { redirect_to @user, notice: 'User was successfully updated.' }
         format.json { head :no_content }
       else

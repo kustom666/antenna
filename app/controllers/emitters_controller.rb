@@ -1,14 +1,17 @@
 class EmittersController < ApplicationController
   load_and_authorize_resource
-  
+  skip_authorize_resource :only => [:index]
   # GET /emitters
   # GET /emitters.json
   def index
-    @emitters = Emitter.all
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @emitters }
+    if current_user
+      if current_user.emitter
+        redirect_to emitter_path(current_user.emitter)
+      else
+        redirect_to new_emitter_path()
+      end
+    else
+      redirect_to "/login"
     end
   end
 

@@ -1,19 +1,13 @@
-<h1>New emitter</h1>
-
-
-<div class="tabbable"> <!-- Only required for left/right tabs -->
-  <ul class="nav nav-tabs">
-    <li class="active"><a href="#tab1" data-toggle="tab">Twitch</a></li>
-    <li><a href="#tab2" data-toggle="tab">Manual</a></li>
-  </ul>
-  <div class="tab-content">
-    <div class="tab-pane active" id="tab1">
-      <%= link_to image_tag("connect_dark.png"), @twitch_login_url%>
+<fieldset>
+  <div class="widget">
+    <div class="head">
+      <h5 class="iCoverflow">Emitter's properties</h5>
     </div>
-    <div class="tab-pane" id="tab2">
-      <%= render 'form' %>
-    </div>
+	<div class="body">
+		<p>In order to create your emitter, please allow antenna to retreive your channel's info on 
+			twitch by connecting there
+		</p>
+		<%= link_to image_tag("connect_dark.png"), @twitch_login_url%>
+	</div>
   </div>
-</div>
-
-<%= link_to 'Back', emitters_path, :class => "btn btn-primary"%>
+</fieldset>

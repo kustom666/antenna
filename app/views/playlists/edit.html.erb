@@ -1,6 +1,11 @@
-<h1>Editing playlist</h1>
+<fieldset>
+	<div class="widget">
+	    <div class="head">
+	      <h5 class="iCoverflow">Editing the playlist</h5>
+	    </div>
+		<%= render 'form' %>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @playlist , :class => "btn btn-primary"%> |
-<%= link_to 'Back', playlists_path , :class => "btn btn-primary"%>
+		<%= link_to 'Show', @emitter , :class => "btn btn-primary"%> |
+		<%= link_to 'Back', emitters_path , :class => "btn btn-primary"%>
+	</div>
+</fieldset>
