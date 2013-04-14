@@ -51,15 +51,19 @@ class UsersController < ApplicationController
     params[:user].delete :desired_ftp_pass
     @user = User.new(params[:user])
     @user.regular = true
-    respond_to do |format|
-      if @user.save
-        User.create_on_disk(@user.nickname, userpass)
-        format.html { redirect_to page_path("ftptutorial"), notice: 'User was successfully created.' }
-        format.json { render json: @user, status: :created, location: @user }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+    if simple_captcha_valid?
+      respond_to do |format|
+        if @user.save
+          User.create_on_disk(@user.nickname, userpass)
+          format.html { redirect_to page_path("ftptutorial"), notice: 'User was successfully created.' }
+          format.json { render json: @user, status: :created, location: @user }
+        else
+          format.html { render action: "new" }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
       end
+    else
+      render action: "new"
     end
   end
 

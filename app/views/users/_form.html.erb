@@ -1,7 +1,4 @@
 <%= brain_form_for(@user, builder: BrainFormBuilder) do |f| %>
-    <% if @user.errors.any? %>
-      <%= f.alert %>
-    <% end %>
 
       <%= f.text_field :nickname %>
       <%= f.text_field :email%>
@@ -13,6 +10,13 @@
         <%= f.check_box :admin %>
         <%= f.check_box :paying %>
     <%end%>
+
+    <div class="rowElem">
+      <label>Enter the captcha</label>
+      <div class="formRight">
+        <%= show_simple_captcha %>
+      </div>
+    </div>
 
     <%= f.submit "Create your account"%>
 <% end %>

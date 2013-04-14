@@ -14,6 +14,7 @@ gem "redcarpet"
 gem 'bootstrap_form'
 gem 'queue_classic', '>= 2.0.0rc14'
 gem "oauth2"
+gem "simple_captcha", :git => 'git://github.com/galetahub/simple-captcha.git'
 
 # Gems used only for assets and not required
 # in production environments by default.

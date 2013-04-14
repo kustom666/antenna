@@ -1,3 +1,9 @@
+GIT
+  remote: git://github.com/galetahub/simple-captcha.git
+  revision: fab66931e4a314547f76649fed9581f003bd7098
+  specs:
+    simple_captcha (0.1.5)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -169,5 +175,6 @@ DEPENDENCIES
   queue_classic (>= 2.0.0rc14)
   rails (= 3.2.13)
   redcarpet
+  simple_captcha!
   uglifier (>= 1.0.3)
   unicorn

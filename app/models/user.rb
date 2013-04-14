@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   attr_accessible :email, :nickname, :password_digest, :password, :password_confirmation, :admin, :regular, :emitter, :paying
   attr_accessor :desired_ftp_pass
   has_secure_password
+  apply_simple_captcha :message => "The code you inputed is wrong"
   validates_presence_of :email, :nickname
   validates_uniqueness_of :email, :nickname
   validates_format_of :nickname, 
