@@ -15,7 +15,7 @@
     <td><%= index_page.body %></td>
     <td><%= link_to 'Show', index_page %></td>
     <td><%= link_to 'Edit', edit_index_page_path(index_page) %></td>
-    <td><%= link_to 'Destroy', index_page, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= button_to 'Destroy', index_page, method: :delete, data: { confirm: 'Are you sure?' }, :class => "redBtn" %></td>
   </tr>
 <% end %>
 </table>

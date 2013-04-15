@@ -1,7 +1,7 @@
 <fieldset>
   <div class="widget">
       <div class="head">
-        <h5 class="iCoverflow">Emitter's properties</h5>
+        <h5 class="iCoverflow">Playlist's properties</h5>
       </div>
 
       <table class="tableStatic" width="100%">
@@ -19,7 +19,7 @@
           <td><%= playlist.description %></td>
           <td><%= link_to 'Show', playlist , :class => "btn btn-primary"%></td>
           <td><%= link_to 'Edit', edit_playlist_path(playlist) , :class => "btn btn-primary"%></td>
-          <td><%= link_to 'Destroy', playlist, method: :delete, data: { confirm: 'Are you sure?' } , :class => "btn btn-danger"%></td>
+          <td><%= button_to 'Destroy', playlist, :method => :delete, data: { confirm: 'Are you sure?' }, :class => "redBtn" %></td>
         </tr>
       <% end %>
       </table>

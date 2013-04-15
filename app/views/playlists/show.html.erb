@@ -42,7 +42,7 @@
 		</p>
 		<div class="submitForm">
 			<% if @playlist.live %>
-			<%= link_to "Stop the live", stop_live_playlist_path(@playlist) , :class => "btn btn-danger"%>
+			<%= link_to "Stop the live", stop_live_playlist_path(@playlist) %>
 			<% else %>
 			<%= link_to "Start the live", start_live_playlist_path(@playlist) , :class => "btn btn-success"%>
 			<% end %>

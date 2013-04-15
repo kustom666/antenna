@@ -19,7 +19,7 @@
           <td><%= video.name %></td>
           <td><%= link_to 'Show', video , :class => "btn btn-primary"%></td>
           <td><%= link_to 'Edit', edit_video_path(video) , :class => "btn btn-primary"%></td>
-          <td><%= link_to 'Destroy', video, method: :delete, data: { confirm: 'Are you sure?' }, :class => "btn btn-danger" %></td>
+          <td><%= button_to 'Destroy', video, method: :delete, data: { confirm: 'Are you sure?' }, :class => "redBtn" %></td>
         </tr>
     <% end %>
     </table>

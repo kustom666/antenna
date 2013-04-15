@@ -22,7 +22,7 @@
         <td><%= download.name %></td>
         <td><%= download.finished_at %></td>
         <td><%= link_to 'Show', download , :class => "btn btn-primary"%></td>
-        <td><%= link_to 'Destroy', download, method: :delete, data: { confirm: 'Are you sure?' } , :class => "btn btn-danger"%></td>
+        <td><%= button_to 'Destroy', download, method: :delete, data: { confirm: 'Are you sure?' }, :class => "redBtn" %></td>
       </tr>
     <% end %>
     </table>

@@ -19,7 +19,7 @@
     <td><%= emitter.user.nickname %></td>
     <td><%= link_to 'Show', emitter %></td>
     <td><%= link_to 'Edit', edit_emitter_path(emitter) %></td>
-    <td><%= link_to 'Destroy', emitter, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= button_to 'Destroy', emitter, method: :delete, data: { confirm: 'Are you sure?' }, :class => "redBtn" %></td>
   </tr>
 <% end %>
 </table>
