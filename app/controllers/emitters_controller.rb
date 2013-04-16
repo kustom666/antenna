@@ -32,7 +32,7 @@ class EmittersController < ApplicationController
   # GET /emitters/new.json
   def new
     @emitter = Emitter.new
-    @twitch_login_url = oauth_client.auth_code.authorize_url(redirect_uri: "http://localhost:3000/oauth")+"&scope=channel_read"
+    @twitch_login_url = oauth_client.auth_code.authorize_url(redirect_uri: "http://176.31.181.107/oauth")+"&scope=channel_read"
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @emitter }
@@ -53,7 +53,7 @@ class EmittersController < ApplicationController
   def oauth
     access_token = params[:code]
     scope = params[:scope]
-    access = oauth_client.auth_code.get_token(access_token, redirect_uri: "http://localhost:3000/oauth")
+    access = oauth_client.auth_code.get_token(access_token, redirect_uri: "http://176.31.181.107/oauth")
     resp = "https://api.twitch.tv/kraken/channel?oauth_token=#{access.token}"
     output = open(resp).read
     parsed_output = JSON.parse(output)
