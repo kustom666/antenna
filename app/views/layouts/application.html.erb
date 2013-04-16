@@ -45,7 +45,8 @@
                     <li class="gallery"><a href="#" title="" class="exp"><span>Videos</span></a>
                         <ul class="sub">
                             <li><%= link_to "List", videos_path %></li>
-                            <li class="last"><%= link_to "Add one", new_video_path  %></li>
+                            <li><%= link_to "Add a video to a playlist", new_video_path  %></li>
+                            <li class="last"><%= link_to "Upload a video", new_video_path  %></li>
                         </ul>
                     </li>
                     <li class="pic"><a href="#" title="" class="exp"><span>Playlists</span></a>
@@ -80,8 +81,59 @@
         </div>
     </div>
      
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
-     
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js"></script>
+
+    <%= javascript_include_tag "plugins/flot/jquery.flot.js"%>
+    <%= javascript_include_tag "plugins/flot/jquery.flot.orderBars.js"%>
+    <%= javascript_include_tag "plugins/flot/jquery.flot.pie.js"%>
+    <%= javascript_include_tag "plugins/flot/excanvas.min.js"%>
+    <%= javascript_include_tag "plugins/flot/jquery.flot.resize.js"%>
+
+    <%= javascript_include_tag "plugins/tables/jquery.dataTables.js"%>
+    <%= javascript_include_tag "plugins/tables/colResizable.min.js"%>
+
+    <%= javascript_include_tag "plugins/forms/forms.js"%>
+    <%= javascript_include_tag "plugins/forms/jquery.autosize.js"%>
+    <%= javascript_include_tag "plugins/forms/autotab.js"%>
+    <%= javascript_include_tag "plugins/forms/jquery.validationEngine-en.js"%>
+    <%= javascript_include_tag "plugins/forms/jquery.validationEngine.js"%>
+    <%= javascript_include_tag "plugins/forms/jquery.dualListBox.js"%>
+    <%= javascript_include_tag "plugins/forms/jquery.select2.min.js"%>
+    <%= javascript_include_tag "plugins/forms/jquery.maskedinput.min.js"%>
+    <%= javascript_include_tag "plugins/forms/jquery.inputlimiter.min.js"%>
+    <%= javascript_include_tag "plugins/forms/jquery.tagsinput.min.js"%>
+    <%= javascript_include_tag "plugins/forms/jquery.wysiwyg.js"%>
+
+    <%= javascript_include_tag "plugins/other/calendar.min.js"%>
+    <%= javascript_include_tag "plugins/other/elfinder.min.js"%>
+
+    <%= javascript_include_tag "plugins/uploader/plupload.js"%>
+    <%= javascript_include_tag "plugins/uploader/plupload.html5.js"%>
+    <%= javascript_include_tag "plugins/uploader/plupload.html4.js"%>
+    <%= javascript_include_tag "plugins/uploader/jquery.plupload.queue.js"%>
+
+    <%= javascript_include_tag "plugins/ui/jquery.progress.js"%>
+    <%= javascript_include_tag "plugins/ui/jquery.jgrowl.js"%>
+    <%= javascript_include_tag "plugins/ui/jquery.tipsy.js"%>
+    <%= javascript_include_tag "plugins/ui/jquery.alerts.js"%>
+    <%= javascript_include_tag "plugins/ui/jquery.colorpicker.js"%>
+    <%= javascript_include_tag "plugins/ui/jquery.mousewheel.js"%>
+
+    <%= javascript_include_tag "plugins/wizards/jquery.form.wizard.js"%>
+    <%= javascript_include_tag "plugins/wizards/jquery.validate.js"%>
+
+    <%= javascript_include_tag "plugins/ui/jquery.breadcrumbs.js"%>
+    <%= javascript_include_tag "plugins/ui/jquery.collapsible.min.js"%>
+    <%= javascript_include_tag "plugins/ui/jquery.ToTop.js"%>
+    <%= javascript_include_tag "plugins/ui/jquery.listnav.js"%>
+    <%= javascript_include_tag "plugins/ui/jquery.sourcerer.js"%>
+    <%= javascript_include_tag "plugins/ui/jquery.timeentry.min.js"%>
+    <%= javascript_include_tag "plugins/ui/jquery.prettyPhoto.js"%>
+
+    <%= javascript_include_tag "custom.js"%>
+
+    <%= javascript_include_tag "charts/chart.js"%>
     
    
 </body>

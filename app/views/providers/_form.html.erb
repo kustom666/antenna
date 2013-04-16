@@ -1,7 +1,11 @@
-<%= form_for(@provider) do |f| %>
-  <% if @provider.errors.any? %>
-    <%= f.alert_message "Please fix the errors below." %>
-  <% end %>
+<%= brain_form_for(@provider) do |f| %>
+  	<% if @provider.errors.any? %>
+	  <div class="nNote nFailure hideit">
+		  	<% @provider.errors.full_messages.each do |msg| %>
+		    <p><%= msg %></p>
+		  	<% end %>
+	  </div>
+	<%end%>
   <%= f.text_field :name %>
   <%= f.text_field :rtmp_url %>
   <%= f.text_area :description %>

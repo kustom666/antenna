@@ -1,7 +1,11 @@
 <%= brain_form_for(@download) do |f| %>
-  <% if @download.errors.any? %>
-    <%= f.alert_message "Please fix the errors below." %>
-  <% end %>
+  	<% if @download.errors.any? %>
+	  <div class="nNote nFailure hideit">
+		  	<% @download.errors.full_messages.each do |msg| %>
+		    <p><%= msg %></p>
+		  	<% end %>
+	  </div>
+	<%end%>>
 
     <%= f.text_field :url %>
     <%= f.text_field :name %>

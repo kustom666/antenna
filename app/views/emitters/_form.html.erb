@@ -1,17 +1,14 @@
 <%= brain_form_for(@emitter) do |f| %>
-<fieldset>
-  <div class="widget">  
-  	<div class="head">
-  		<h5 class="iCoverflow">New emitter</h5>
-  	</div>
-  <% if @emitter.errors.any? %>
-    <%= f.alert_message "Please fix the errors below." %>
-  <% end %>
+    <% if @emitter.errors.any? %>
+    <div class="nNote nFailure hideit">
+        <% @emitter.errors.full_messages.each do |msg| %>
+        <p><%= msg %></p>
+        <% end %>
+    </div>
+  <%end%>
 
     <%= f.text_field :title %>
     <%= f.collection_select(:provider_id, Provider.all, :id, :name)%>
     <%= f.text_field :live_key %>
     <%= f.submit "Create this emitter"%>
-    </div>
-</fieldset>
 <% end %>
