@@ -20,9 +20,9 @@ class User < ActiveRecord::Base
   def self.create_on_disk(username, userpass) 
     userpass = userpass.crypt("ku")
     system "sudo mkdir /home/#{username}/" 
-    system "sudo chmod 774 /home/#{username}"
+    system "sudo chmod 777 /home/#{username}"
     system "sudo mkdir /home/#{username}/videos"
-    system "sudo chmod 774 /home/#{username}/videos"
+    system "sudo chmod 777 /home/#{username}/videos"
     system "sudo useradd #{username} -p #{userpass} -d /home/#{username}/videos/ -G livepushers -s /bin/MySecureShell"
     system "sudo chown -R #{username} /home/#{username}"
     system "sudo chgrp -R livepushers /home/#{username}"
