@@ -8,7 +8,7 @@ class EmittersController < ApplicationController
       if current_user.emitter
         redirect_to emitter_path(current_user.emitter)
       else
-        redirect_to new_emitter_path()
+        redirect_to new_emitter_path
       end
     else
       redirect_to "/login"
