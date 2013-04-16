@@ -32,7 +32,7 @@
 			<tr>
 				<td><%= link_to video.name, video_path(video) %></td>
 				<td><%= link_to "Edit", edit_video_path(video)%></td>
-				<td><%= link_to "Delete", video , method: :delete %></td>
+				<td><%= button_to "Delete", video , method: :delete %></td>
 			</tr>
 			<%end%>
 		</table>
