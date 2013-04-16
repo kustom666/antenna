@@ -17,7 +17,11 @@
                 <div class="userNav">
                     <ul>
                         <li><%= link_to image_tag("icons/topnav/profile.png") + content_tag(:span, "Account"), edit_user_path(current_user)%></li>
-                        <li><%= link_to image_tag("icons/topnav/tasks.png") + content_tag(:span, "Emitter"), edit_emitter_path(current_user.emitter)%></li>
+                        <% if current_user.emitter %>
+                            <li><%= link_to image_tag("icons/topnav/tasks.png") + content_tag(:span, "Emitter"), edit_emitter_path(current_user.emitter)%></li>
+                        <%else%>
+                           <li><%= link_to image_tag("icons/topnav/tasks.png") + content_tag(:span, "Emitter"), new_emitter_path %></li> 
+                        <%end%>
                         <li><%= link_to image_tag("icons/topnav/logout.png") + content_tag(:span, "Logout"), "/logout" %></li></li>
                     </ul>
                 </div>
