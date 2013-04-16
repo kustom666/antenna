@@ -1,10 +1,5 @@
 require "bundler/capistrano"
-set :bundle_flags, "--deployment --quiet --binstubs"
-set (:bundle_cmd) { "#{release_path}/bin/bundle" }
-
-set :default_environment, {
-  'PATH' => "$HOME/.rbenv/shims:$HOME/.rbenv/bin:$PATH"
-}
+set :bundle_flags, "--deployment"
 
 server "176.31.181.107", :web, :app, :db, primary: true
 
