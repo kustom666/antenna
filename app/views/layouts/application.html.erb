@@ -45,6 +45,7 @@
         <% if current_user %>
             <div class="leftNav">
                 <ul id="menu">
+                    <% if current_user.emitter %>
                     <li class="dash"><%= link_to content_tag(:span, "Dashboard"), emitter_path(current_user.emitter) %></li>
                     <li class="gallery"><a href="#" title="" class="exp"><span>Videos</span></a>
                         <ul class="sub">
@@ -68,6 +69,7 @@
                             <li class="last"><%= link_to "Download a video", new_download_path  %></li>
                         </ul>
                     </li>
+                    <% end %>
                     <li class="files"><%= link_to content_tag(:span, "File Manager (soon)"), "#"%></li>
                 </ul>
             </div>
