@@ -98,7 +98,7 @@ class PlaylistsController < ApplicationController
       redirect_to @playlist, notice: "The playlist is already live!"
     else
       puts "\n\nscreen -mdS #{user.nickname} sh /home/deployer/playlist#{user.nickname}.sh\n\n"
-      system("sudo chmod -R 774 /home/#{user.nickname}/videos")
+      system("sudo chmod -R 777 /home/#{user.nickname}/videos")
       system("screen -mdS #{user.nickname} sh /home/deployer/playlist#{user.nickname}.sh")
       @playlist.live = true
       @playlist.save
