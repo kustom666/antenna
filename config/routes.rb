@@ -14,7 +14,11 @@ Antenna::Application.routes.draw do
   resources :videos
 
 
-  resources :emitters
+  resources :emitters do
+    member do
+      get 'run_commercial'
+    end
+  end
 
 
   resources :providers

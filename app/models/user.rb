@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :email, :nickname, :password_digest, :password, :password_confirmation, :admin, :regular, :emitter, :paying, :twitch_token
+  attr_accessible :email, :nickname, :password_digest, :password, :password_confirmation, :admin, :regular, :emitter, :paying, :twitch_token, :commercial_url
   attr_accessor :desired_ftp_pass
   has_secure_password
   apply_simple_captcha :message => "The code you inputed is wrong"

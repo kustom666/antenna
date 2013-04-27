@@ -51,6 +51,7 @@ class ApplicationController < ActionController::Base
 
     prep_user = User.find(current_user)
     prep_user.twitch_token = access.token
+    prep_user.commercial_url = parsed_output["_links"]["commercial"]
     prep_user.save
 
     respond_to do |format|

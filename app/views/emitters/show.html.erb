@@ -19,6 +19,18 @@
         <b>Provider:</b>
         <%= @emitter.provider.name %>
       </p>
+
+      <p>
+        <b>Title:</b>
+        <%= link_to @stream_title,@url %>
+      </p>
+
+      <p>
+        <b>Delay:</b>
+        <%= @delay %>
+      </p>
+
+      <p><%= link_to "Launch a commercial", run_commercial_emitter_path(@emitter)%></p>
       <br/>
     </div>
   </div>
@@ -106,5 +118,3 @@
     <br/>
   </div>
 </fieldset>
-
-

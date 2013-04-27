@@ -1,6 +1,13 @@
 class EmittersController < ApplicationController
   load_and_authorize_resource
   skip_authorize_resource :only => [:index]
+
+  def run_commercial
+    command = "curl -H 'Accept: application/vnd.twitchtv.v2+json' -H 'Authorization: OAuth #{current_user.twitch_token}' -d \"length=30\" -X POST #{current_user.commercial_url}"
+    system(command)
+    redirect_to root_path
+  end
+
   # GET /emitters
   # GET /emitters.json
   def index
@@ -22,6 +29,15 @@ class EmittersController < ApplicationController
     @playlists = Playlist.where(:user_id => current_user)
     @videos = Video.where(:user_id => current_user)
     @downloads = Download.where(:user_id => current_user)
+
+    resp = "https://api.twitch.tv/kraken/channel?oauth_token=#{current_user.twitch_token}"
+    output = open(resp).read
+    parsed_output = JSON.parse(output)
+    @delay = parsed_output["delay"]
+    @stream_title = parsed_output["status"]
+    @logo = parsed_output["logo"]
+    @url = parsed_output["url"]
+
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @emitter }
