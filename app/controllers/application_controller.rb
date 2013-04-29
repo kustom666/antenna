@@ -31,7 +31,7 @@ class ApplicationController < ActionController::Base
     access_token = params[:code]
     scope = params[:scope]
     if Rails.env.production?
-      access = oauth_client.auth_code.get_token(access_token, redirect_uri: "https://176.31.181.107/oauth")
+      access = oauth_client.auth_code.get_token(access_token, redirect_uri: "https://bytechain.com/oauth")
     else
       access = oauth_client.auth_code.get_token(access_token, redirect_uri: "http://127.0.0.1:3000/oauth")
     end

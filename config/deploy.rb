@@ -1,7 +1,7 @@
 require "bundler/capistrano"
 set :bundle_flags, "--deployment"
 
-server "176.31.181.107", :web, :app, :db, primary: true
+server "bytechain.com", :web, :app, :db, primary: true
 
 set :application, "antenna"
 set :user, "deployer"

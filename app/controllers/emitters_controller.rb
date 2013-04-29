@@ -49,7 +49,7 @@ class EmittersController < ApplicationController
   def new
     @emitter = Emitter.new
     if Rails.env.production?
-      @twitch_login_url = oauth_client.auth_code.authorize_url(redirect_uri: "https://176.31.181.107/oauth")+"&scope=channel_read channel_editor channel_commercial"
+      @twitch_login_url = oauth_client.auth_code.authorize_url(redirect_uri: "https://bytechain.com/oauth")+"&scope=channel_read channel_editor channel_commercial"
     else
       @twitch_login_url = oauth_client.auth_code.authorize_url(redirect_uri: "http://127.0.0.1:3000/oauth")+"&scope=channel_read channel_editor channel_commercial"
     end
