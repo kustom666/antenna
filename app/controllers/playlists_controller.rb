@@ -131,7 +131,8 @@ class PlaylistsController < ApplicationController
     end
     File.open("/home/deployer/videolist#{user.nickname}", 'w+') {|f| f.write(list) }
     system("rm #{Rails.public_path}/#{user.nickname}-#{playlist.title}-preview.flv")
-    system("ffmpeg -f concat -i /home/deployer/videolist#{user.nickname} -c copy -f flv #{Rails.public_path}/#{user.nickname}-#{playlist.title}-preview.flv")
+    File.open("/home/deployer/genpreview#{user.nickname}-#{playlist.title}.sh") { |f| f.write("ffmpeg -f concat -i /home/deployer/videolist#{user.nickname} -c copy -f flv '#{Rails.public_path}/#{user.nickname}-#{playlist.title}-preview.flv'")}
+    system("screen -mdS genplay#{user.nickname}-#{playlist.title} sh /home/deployer/genpreview#{user.nickname}-#{playlist.title}.sh")
     playlist.preview = "/#{user.nickname}-#{playlist.title}-preview.flv"
     playlist.save
     redirect_to playlist, notice: "The playlist preview has been generated"
