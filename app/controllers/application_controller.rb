@@ -55,7 +55,7 @@ class ApplicationController < ActionController::Base
     prep_user.save
 
     respond_to do |format|
-        format.html { redirect_to @emitter, notice: 'Emitter was successfully created.' }
+        format.html { redirect_to current_user.emitter, notice: 'Emitter was successfully created.' }
         format.json { render json: @emitter, status: :created, location: @emitter }
     end
   end
