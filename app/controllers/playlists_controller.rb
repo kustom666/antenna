@@ -130,8 +130,9 @@ class PlaylistsController < ApplicationController
       list << "file '/home/#{user.nickname}/videos/#{video.name}'\n"
     end
     File.open("/home/deployer/videolist#{user.nickname}", 'w+') {|f| f.write(list) }
+    system("rm #{Rails.public_path}/#{user.nickname}-#{playlist.title}-preview.flv")
     system("ffmpeg -f concat -i /home/deployer/videolist#{user.nickname} -c copy -f flv #{Rails.public_path}/#{user.nickname}-#{playlist.title}-preview.flv")
-    playlist.preview = "#{user.nickname}-#{playlist.title}-preview.flv"
+    playlist.preview = "#{Rails.public_path}/#{user.nickname}-#{playlist.title}-preview.flv"
     playlist.save
     redirect_to playlist, notice: "The playlist preview has been generated"
   end
