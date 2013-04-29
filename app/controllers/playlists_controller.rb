@@ -121,4 +121,18 @@ class PlaylistsController < ApplicationController
     playlist.save
     redirect_to playlist, notice: "The playlist has been forced as offline"
   end
+
+  def generate_preview
+    playlist = Playlist.find(params[:id])
+    user = playlist.user 
+    list = ""
+    playlist.videos.each do |video|
+      list << "file '/home/#{user.nickname}/videos/#{video.name}'\n"
+    end
+    File.open("/home/deployer/videolist#{user.nickname}", 'w+') {|f| f.write(list) }
+    system("ffmpeg -f concat -i /home/deployer/videolist#{user.nickname} -c copy -f flv #{Rails.public_path}/#{user.nickname}-#{playlist.title}-preview.flv")
+    playlist.preview = "#{Rails.public_path}/#{user.nickname}-#{playlist.title}-preview.flv"
+    playlist.save
+    redirect_to playlist, notice: "The playlist preview has been generated"
+  end
 end

@@ -42,7 +42,7 @@ class ApplicationController < ActionController::Base
 
     unless current_user.emitter
       @emitter = Emitter.new
-      @emitter.user = current_user 
+      @emitter.user = current_user
       @emitter.provider_id = 1
       @emitter.live_key = parsed_output["stream_key"]
       @emitter.title = parsed_output["url"]

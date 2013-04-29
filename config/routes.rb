@@ -7,6 +7,7 @@ Antenna::Application.routes.draw do
     member do
       get 'start_live'
       get 'stop_live'
+      get 'generate_preview'
     end
   end
 

@@ -14,6 +14,19 @@
 			  <b>Description:</b>
 			  <%= @playlist.description %>
 			</p>
+
+			<% if @playlist.preview %>
+				<h5>Preview</h5>
+				<%= javascript_include_tag "flowplayer-3.2.12.min.js"%>
+				<%= link_to "", @playlist.preview, :style => "display:block;width:425px;height:300px;", :id => "player"%>
+				<% swf_path = asset_path "swf/flowplayer-3.2.16.swf"%>
+				<script type="text/javascript">
+					flowplayer("player","<%= swf_path %>");
+				</script>
+				<%= link_to "Regenerate a preview", generate_preview_playlist_path(@playlist)%>
+			<% else %>
+				<%= link_to "Generate a preview", generate_preview_playlist_path(@playlist)%>
+			<% end %>
 		</div>
 	</div>
 </fieldset>
